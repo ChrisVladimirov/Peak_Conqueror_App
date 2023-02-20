@@ -1,0 +1,25 @@
+.nav-container-items {
+    width: 10%;
+    margin: 0;
+    float: left;
+}
+
+.peakConqueror-logo {
+    width: 70px;
+    height: 60px;
+}
+
+.nav-ul {
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.nav-container-search {
+    float: right;
+    /*justify-content: space-evenly;*/
+}
+
+.navbar-search-button {
+    width: auto;
+    float: left;
+}
