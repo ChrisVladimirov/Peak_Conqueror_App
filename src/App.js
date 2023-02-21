@@ -1,4 +1,5 @@
 import './App.css';
+import './common-styles.css';
 import {Home} from "./Components/Home";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {MountainRoutes} from "./Components/MountainRoutes";
