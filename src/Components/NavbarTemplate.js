@@ -1,16 +1,4 @@
-import {
-    Button, Col,
-    Container,
-    Form,
-    FormControl,
-    FormGroup,
-    InputGroup,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavDropdown
-} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {Button, Col, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 export const NavbarTemplate = (props) => {
     const brandContainerStyle = {width: '10%', margin: 0, float: 'left'};
@@ -35,7 +23,7 @@ export const NavbarTemplate = (props) => {
                         <Nav.Link href="/users/login">Login</Nav.Link>
                         <Nav.Link href="/users/register">Register</Nav.Link>
                         <Nav.Link href="/users/all">Users</Nav.Link>
-                        <Nav.Link href="/weather/all">Forecast</Nav.Link>
+                        <Nav.Link href="/weather/Rila/Костенец/5">Forecast</Nav.Link>
                         <NavDropdown title="Routes" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/routes/all">
                                 View All Routes
@@ -56,9 +44,9 @@ export const NavbarTemplate = (props) => {
                         <Form>
                             <InputGroup className="my-2 my-lg-0">
                                 <Col xs={12}>
-                                <FormControl className="mr-sm-2"
-                                             aria-label="Search" type="search"
-                                             style={{width: '70%', float: 'left'}} placeholder="Search"/>
+                                    <FormControl className="mr-sm-2"
+                                                 aria-label="Search" type="search"
+                                                 style={{width: '70%', float: 'left'}} placeholder="Search"/>
                                     <Button variant="outline-success" type="submit"
                                             className="my-2 my-sm-0" style={{width: 'auto', float: 'left'}}>
                                         Search
