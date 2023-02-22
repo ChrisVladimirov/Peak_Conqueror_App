@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:8081/weather/";
 
-export const getWeatherForLocation = async (mountain='Rila', location='Костенец', days=3) => {
+export const getWeatherForLocation = async (mountain='Rila', location='Костенец', days=5) => {
     let result;
     if (!!mountain && !!location && !!days) {
         try {
