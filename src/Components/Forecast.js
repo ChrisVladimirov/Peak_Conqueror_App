@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {ForecastDayDTO} from "./ForecastDayDTO";
 import {NavbarTemplate} from "./NavbarTemplate";
 import {getWeatherForLocation} from "../services/forecastService";
+import {Footer} from "./Footer";
 
 export const Forecast = () => {
 
@@ -27,16 +28,18 @@ export const Forecast = () => {
     })
 
     let forecast = Array.from(weatherData)
+    // noinspection JSValidateTypes
     return (
         <div>
             <NavbarTemplate/>
             <h3 style={{marginTop: '130px'}}>Forecast data for our users</h3>
             <Suspense fallback={<p>Loading...</p>}>
                 {forecast.length > 0
-                    ? <ul>{forecast.map(day => (<div key={day.date_}><p>{JSON.stringify(day)}</p></div>))}</ul>
+                    ? forecast.map(day => <ForecastDayDTO key={day.date_} dayDTO={day}/>)
                     : <p>Nothing yet!</p>
                 }
             </Suspense>
+            <Footer/>
         </div>
     );
 }
