@@ -7,7 +7,7 @@ export const ForecastDayDTO = (props) => {
     return (
         <>
             <div className="card-group">
-                <div className="card" style={{width: '18rem', backgroundColor: 'rgba(255, 248, 211, 0.4)'}}>
+                <div className="card" style={{width: '18vw', backgroundColor: 'rgba(255, 248, 211, 0.4)'}}>
                     <div className="card-body">
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">

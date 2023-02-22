@@ -54,17 +54,20 @@ export const Footer = (props) => {
                                     Useful links
                                 </h6>
                                 <p>
-                                    <Link className="text-white">Build an adventurous
-                                        fellowship</Link>
+                                    <Link className="text-white"
+                                          to="/users/all">Build an adventurous fellowship</Link>
                                 </p>
                                 <p>
-                                    <Link className="text-white">Check the forecast</Link>
+                                    <Link className="text-white"
+                                          to="/weather/Rila/Рилски манастир/3">Check the forecast</Link>
                                 </p>
                                 <p>
-                                    <Link className="text-white">View breathtaking Routes</Link>
+                                    <Link className="text-white"
+                                          to="/routes/all">View breathtaking Routes</Link>
                                 </p>
                                 <p>
-                                    <Link className="text-white">Go Journeying with friends</Link>
+                                    <Link className="text-white"
+                                          to="/journey/organise">Go Journeying with friends</Link>
                                 </p>
                             </div>
 
@@ -95,39 +98,39 @@ export const Footer = (props) => {
 
                                 <div className="p-3">
                                     © 2023 Copyright:
-                                    <Link className="text-white" to="https://peakConqueror.bg/"> PeakConqueror App </Link>
+                                    <Link className="text-white" to="https://peakConqueror.bg/"> PeakConqueror
+                                        App </Link>
                                 </div>
 
                             </div>
 
 
-
                             <div className="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
 
                                 <Button variant={"outline-light"}
-                                    className="btn-floating m-1 text-white"
-                                    role="button"
+                                        className="btn-floating m-1 text-white"
+                                        role="button"
                                 ><i className="fab fa-facebook-f"></i
                                 ></Button>
 
 
                                 <Button variant={"outline-light"}
-                                    className="btn-floating m-1 text-white"
-                                    role="button"
+                                        className="btn-floating m-1 text-white"
+                                        role="button"
                                 ><i className="fab fa-twitter"></i
                                 ></Button>
 
 
                                 <Button variant={"outline-light"}
-                                    className="btn-floating m-1 text-white"
-                                    role="button"
+                                        className="btn-floating m-1 text-white"
+                                        role="button"
                                 ><i className="fab fa-google"></i
                                 ></Button>
 
 
                                 <Button variant={"outline-light"}
-                                    className="btn-floating m-1 text-white"
-                                    role="button"
+                                        className="btn-floating m-1 text-white"
+                                        role="button"
                                 ><i className="fab fa-instagram"></i
                                 ></Button>
                             </div>

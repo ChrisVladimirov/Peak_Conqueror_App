@@ -19,7 +19,7 @@ export const RegisterPage = (props) => {
                     <div className="row">
                         <div className="registration-form">
 
-                            <div className="form-header" style={{backgroundPosition: 'top'}}>
+                            <div className="form-header" style={{backgroundPosition: 'top', marginBottom: '35px'}}>
                                 <h1>Register</h1>
                             </div>
 
@@ -29,7 +29,7 @@ export const RegisterPage = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <div className="form-group">
-                                            <label className="form-label" htmlFor="firstName">First name</label>
+                                            <label className="form-label text-white" htmlFor="firstName">First name</label>
                                             <input type="text" className="form-control"
                                                    id="firstName"
                                                    placeholder="Enter your first name"/>
@@ -37,7 +37,7 @@ export const RegisterPage = (props) => {
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group">
-                                            <label htmlFor="lastName" className="form-label">Last name</label>
+                                            <label htmlFor="lastName" className="form-label text-white">Last name</label>
                                             <input type="text" className="form-control"
                                                    id="lastName"
                                                    placeholder="Enter your last name"/>
@@ -46,23 +46,23 @@ export const RegisterPage = (props) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="username-field">Username</label>
+                                    <label htmlFor="username-field" className="text-white">Username</label>
                                     <input type="text" className="form-control"
                                            id="username-field" placeholder="Username..."/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="emailField">Email</label>
+                                    <label htmlFor="emailField" className="text-white">Email</label>
                                     <input type="email" id="emailField" placeholder="something@domain.com"
                                            className="form-control"/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="password-field">Password</label>
+                                    <label htmlFor="password-field" className="text-white">Password</label>
                                     <input type="password"
                                            className="form-control" id="password-field" placeholder="Password..."/>
 
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="confirmPassword">Repeat password</label>
+                                    <label htmlFor="confirmPassword" className="text-white">Repeat password</label>
                                     <input type="password" id="confirmPassword"
                                            className="form-control" placeholder="Password..."/>
                                 </div>

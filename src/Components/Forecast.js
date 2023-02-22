@@ -33,13 +33,13 @@ export const Forecast = () => {
     return (
         <div>
             <NavbarTemplate/>
-            <h3 style={{marginTop: '130px'}}>Forecast data for our users</h3>
+            <h3 style={{marginTop: '8em'}}>Forecast data for our users</h3>
 
-            <section className="d-flex justify-content-center align-self-center" style={{margin:'100px'}}>
+            <section className="d-flex justify-content-center align-self-center" style={{margin:'6em'}}>
                 <Suspense fallback={<p>Loading...</p>}>
                     {forecast.length > 0
                         ? forecast.map(day => <ForecastDayDTO key={day.date_} dayDTO={day}/>)
-                        : <p>Nothing yet!</p>
+                        : <p style={{fontSize: '2em'}}>Loading...</p>
                     }
                 </Suspense>
             </section>
