@@ -1,17 +1,27 @@
 import {WeatherImage} from "./WeatherImage";
-import {Link} from "react-router-dom";
 
 export const ForecastDayDTO = (props) => {
     const dayDTO = props.dayDTO;
 
+    let date = dayDTO.date_;
+    let dateAsNumber = new Date((date));
+
+    let dayOfWeek = dateAsNumber.toLocaleString('default', {weekday: 'long'});
+
     return (
         <>
-            <div className="card-group">
+            <div className="card-group " style={{
+                minWidth: '6em', minHeight: '8em',
+                maxWidth: '15em', maxHeight: '38em'
+            }}>
                 <div className="card" style={{width: '18vw', backgroundColor: 'rgba(255, 248, 211, 0.4)'}}>
                     <div className="card-body">
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">
-                                <h5 className="card-title">{dayDTO.date_.weekday}</h5>
+                                <h5 className="card-title"
+                                    style={dayOfWeek === 'Wednesday'
+                                        ? {fontSize: '0.8em'}
+                                        : {fontSize: '1em'}}>{dayOfWeek}</h5>
                                 <h6 className="card-subtitle">{dayDTO.date_}</h6>
                                 <div>
                                     {
@@ -40,19 +50,25 @@ export const ForecastDayDTO = (props) => {
                                         }[dayDTO.iconName]
                                     }
                                 </div>
-                                <p className="card-text">
-                                    {dayDTO.tempMin}° | {dayDTO.tempMax}°
+                                <p className="card-text" style={{fontSize: '0.8em', fontWeight: 'bold'}}>
+                                    {dayDTO.tempMin.toFixed(1)}° | {dayDTO.tempMax.toFixed(1)}°
                                 </p>
-                                <p className="card-text">{dayDTO.summary_}</p>
+                                <p id="weather-summary" className="card-text">
+                                    {props.numberDays <= 5 ?
+                                        dayDTO.summary_
+                                        : null}
+                                </p>
                                 <span className="card-text">
-                                <b>Wind speed: {dayDTO.windSpeed} m/s</b>
+                                <b><i className="fa-solid fa-wind"></i>
+                                    {dayDTO.windSpeed.toFixed(1)} m/s</b>
                             </span>
                             </li>
                             <li className="list-group-item">
-                                <p className="card-text">&#x2614;{dayDTO.precipitationProb}%</p>
-                                <p className="card-text">Humidity: {dayDTO.humidityPercentage}%</p>
-                                <p className="card-text">&#x2601; {dayDTO.cloudCover}%</p>
-                                <p className="card-text">Visibility: {dayDTO.visibilityPercentage}%</p>
+                                <p className="card-text"><b
+                                    style={{fontSize: '1.2em'}}>&#x2602;</b> {dayDTO.precipitationProb.toFixed(1)}%</p>
+                                <p className="card-text">Humidity: {dayDTO.humidityPercentage.toFixed(1)}%</p>
+                                <p className="card-text">&#x2601; {dayDTO.cloudCover.toFixed(1)}%</p>
+                                <p className="card-text">Visibility: {dayDTO.visibilityPercentage.toFixed(1)}%</p>
                             </li>
                             <li className="list-group-item">
                                 {dayDTO.snowPercentage > 0
