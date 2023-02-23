@@ -6,7 +6,7 @@ import {getWeatherForLocation} from "../services/forecastService";
 import {Footer} from "./Footer";
 import {Link} from "react-router-dom";
 
-export const Forecast = (/*{mountain, location, numberOfDays}*/props) => {
+export const Forecast = (props) => {
 
     const [weatherData, setWeatherData] = useState([]);
     const [mountain, setMountain] = useState(props.mountain || 'Rila');
@@ -17,7 +17,6 @@ export const Forecast = (/*{mountain, location, numberOfDays}*/props) => {
         e.preventDefault();
         setNumberOfDays(days);
         getWeatherForLocation(mountain, location, numberOfDays).then(result => setWeatherData(result));
-        document.querySelector('#weather-summary').classList.add('display');
     }
 
     useEffect(() => {
