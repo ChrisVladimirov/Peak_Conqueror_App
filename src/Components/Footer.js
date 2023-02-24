@@ -32,16 +32,16 @@ export const Footer = (props) => {
                             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
                                 <p>
-                                    <Link className="text-white">Logbook & Reminder</Link>
+                                    <b className="text-white">Logbook & Reminder</b>
                                 </p>
                                 <p>
-                                    <Link className="text-white">Mountain Weather Forecast</Link>
+                                    <b className="text-white">Mountain Weather Forecast</b>
                                 </p>
                                 <p>
-                                    <Link className="text-white">Routes Info & Maps</Link>
+                                    <b className="text-white">Routes Info & Maps</b>
                                 </p>
                                 <p>
-                                    <Link className="text-white">Journey Invitation & Organisation</Link>
+                                    <b className="text-white">Journey Invitation & Organisation</b>
                                 </p>
                             </div>
 
