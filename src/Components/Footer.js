@@ -59,7 +59,10 @@ export const Footer = (props) => {
                                 </p>
                                 <p>
                                     <Link className="text-white"
-                                          to="/weather/Rila/Рилски манастир/3">Check the forecast</Link>
+                                          mountain="Rila"
+                                          mountain_location="Malyovitsa"
+                                          numberOfDays={5}
+                                          to="/weather/Rila/Malyovitsa/5">Check the forecast</Link>
                                 </p>
                                 <p>
                                     <Link className="text-white"

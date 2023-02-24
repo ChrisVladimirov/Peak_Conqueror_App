@@ -11,7 +11,7 @@ export const ForecastDayDTO = (props) => {
     return (
         <>
             <div className="card-group " style={{
-                minWidth: '6em', minHeight: '8em',
+                minWidth: '7em', minHeight: '8em',
                 maxWidth: '15em', maxHeight: '38em'
             }}>
                 <div className="card" style={{width: '18vw', backgroundColor: 'rgba(255, 248, 211, 0.4)'}}>
@@ -19,8 +19,8 @@ export const ForecastDayDTO = (props) => {
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">
                                 <h5 className="card-title"
-                                    style={dayOfWeek === 'Wednesday'
-                                        ? {fontSize: '0.8em'}
+                                    style={dayOfWeek === 'Wednesday' || dayOfWeek === 'Thursday'
+                                        ? {fontSize: '0.7em'}
                                         : {fontSize: '1em'}}>{dayOfWeek}</h5>
                                 <h6 className="card-subtitle">{dayDTO.date_}</h6>
                                 <div>

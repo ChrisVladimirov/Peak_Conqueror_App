@@ -33,7 +33,7 @@ export const Home = (props) => {
                     <p>Choose between 5, 7 or even 10-day forecast to plan your next adventure!</p>
                     <p className="lead">
                         <Link className="btn btn-primary btn-lg"
-                              to="/weather/Rila/Костенец/5"
+                              to="/weather/Rila/Kostenets/5"
 
                               role="button">Learn more</Link>
                     </p>

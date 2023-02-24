@@ -1,4 +1,5 @@
 import {Button, Col, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export const NavbarTemplate = (props) => {
     const brandContainerStyle = {width: '10%', margin: 0, float: 'left'};
@@ -23,7 +24,11 @@ export const NavbarTemplate = (props) => {
                         <Nav.Link href="/users/login">Login</Nav.Link>
                         <Nav.Link href="/users/register">Register</Nav.Link>
                         <Nav.Link href="/users/all">Users</Nav.Link>
-                        <Nav.Link href="/weather/Rila/Костенец/5">Forecast</Nav.Link>
+                        <Nav.Link>
+                            <Link
+                                mountain_location="Rila_monastery"
+                                to="/weather/Rila/Rila_monastery/5">Forecast</Link>
+                        </Nav.Link>
                         <NavDropdown title="Routes" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/routes/all">
                                 View All Routes

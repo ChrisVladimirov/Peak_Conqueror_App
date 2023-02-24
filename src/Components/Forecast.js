@@ -9,19 +9,19 @@ import {Link} from "react-router-dom";
 export const Forecast = (props) => {
 
     const [weatherData, setWeatherData] = useState([]);
-    const [mountain, setMountain] = useState(props.mountain || 'Rila');
-    const [location, setLocation] = useState(/*props.location || */'Костенец');
-    const [numberOfDays, setNumberOfDays] = useState(props.numberOfDays || 5);
+    const [mountain, setMountain] = useState(props.mountain /*|| 'Rila'*/);
+    const [mountain_location, setLocation] = useState(props.mountain_location /*|| 'Borovets'*/);
+    const [numberOfDays, setNumberOfDays] = useState(props.numberOfDays /*|| 5*/);
 
     function forecastButtonsHandler(e, days) {
         e.preventDefault();
         setNumberOfDays(days);
-        getWeatherForLocation(mountain, location, numberOfDays).then(result => setWeatherData(result));
+        getWeatherForLocation(mountain, mountain_location, numberOfDays).then(result => setWeatherData(result));
     }
 
     useEffect(() => {
         setTimeout(() => {
-            getWeatherForLocation()
+            getWeatherForLocation(mountain, mountain_location, numberOfDays)
                 .then(result => {
                     setWeatherData(result);
                 })
@@ -38,7 +38,6 @@ export const Forecast = (props) => {
     })
 
     let forecast = Array.from(weatherData)
-
 
     // noinspection JSValidateTypes
     return (
@@ -68,12 +67,12 @@ export const Forecast = (props) => {
                     <div className="btn-group" role={"group"} onClick={(e) => forecastButtonsHandler(e, 7)}>
                         <Link id="button-seven-days"
                               className="btn btn-dark position-absolute top-50 start-0 translate-middle"
-                              to={`/weather/${mountain}/${location}/7`}>View 7-day forecast</Link>
+                              to="#">View 7-day forecast</Link>
                     </div>
                     <div className="btn-group" role="group" onClick={(e) => forecastButtonsHandler(e, 10)}>
                         <Link id="button-ten-days"
                               className="btn btn-dark position-absolute top-50 start-100 translate-middle"
-                              to={`/weather/${mountain}/${location}/10`}>
+                              to="#">
                             View complete 10-day forecast
                         </Link>
                     </div>
