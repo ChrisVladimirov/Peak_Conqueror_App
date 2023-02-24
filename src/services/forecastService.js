@@ -10,3 +10,13 @@ export const getWeatherForLocation = async (mountain = 'Rila', location = 'Koste
 
     return result;
 }
+
+export const getAllForecastLocationNames = async () => {
+    let result;
+    try {
+        result = (await fetch(baseUrl + 'all/locations')).json()
+    } catch (error) {
+        console.log(error)
+    }
+    return result;
+}

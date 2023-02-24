@@ -1,17 +1,22 @@
-import {useEffect, Suspense} from "react";
-import React, {useState} from 'react';
+import {useEffect, Suspense, useState} from "react";
 import {ForecastDayDTO} from "./ForecastDayDTO";
 import {NavbarTemplate} from "./NavbarTemplate";
-import {getWeatherForLocation} from "../services/forecastService";
+import {getAllForecastLocationNames, getWeatherForLocation} from "../services/forecastService";
 import {Footer} from "./Footer";
 import {Link} from "react-router-dom";
+import {ForecastLocation} from "./ForecastLocation";
 
 export const Forecast = (props) => {
 
     const [weatherData, setWeatherData] = useState([]);
-    const [mountain, setMountain] = useState(props.mountain /*|| 'Rila'*/);
-    const [mountain_location, setLocation] = useState(props.mountain_location /*|| 'Borovets'*/);
-    const [numberOfDays, setNumberOfDays] = useState(props.numberOfDays /*|| 5*/);
+    ////////////////////
+    const [mountain, setMountain] = useState(props.match.params.mountain);
+    const [mountain_location, setMountain_Location] = useState(props.match.params.mountain_location);
+    const [numberOfDays, setNumberOfDays] = useState(props.match.params.numberOfDays);
+    ////////////////////
+    const [allLocations, setAllLocations] = useState([]);
+
+
 
     function forecastButtonsHandler(e, days) {
         e.preventDefault();
@@ -21,12 +26,18 @@ export const Forecast = (props) => {
 
     useEffect(() => {
         setTimeout(() => {
+            getAllForecastLocationNames().then(result => setAllLocations(result));
+        }, 1000)
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
             getWeatherForLocation(mountain, mountain_location, numberOfDays)
                 .then(result => {
                     setWeatherData(result);
                 })
         }, 1000);
-    }, []);
+    }, [mountain_location, numberOfDays]);
 
     useEffect(() => {
         const currentStyle = document.body.style;
@@ -45,14 +56,26 @@ export const Forecast = (props) => {
             <NavbarTemplate/>
             <h3 style={{marginTop: '5em'}}>Forecast data for our users</h3>
 
+            <section style={{marginTop: '150px', marginBottom: '80px'}}
+                     className="d-flex justify-content-center align-self-center">
+                <div className="dropdown">
+                    <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">View the weather on...
+                    </a>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {allLocations.map((currentPlace, id) =>
+                            <ForecastLocation key={id} setters={[setMountain, setMountain_Location, setNumberOfDays]} place={currentPlace}/>)}
+                    </ul>
+                </div>
+            </section>
+
             <section className="d-flex"
                      style={{
                          margin: '6em',
                          marginTop: '5em',
                          marginBottom: '12em',
                          alignSelf: 'center',
-                         justifyContent: 'center',
-                         overflow: 'scroll'
+                         justifyContent: 'center'
                      }}>
                 <Suspense fallback={<p>Loading...</p>}>
                     {forecast.length > 0

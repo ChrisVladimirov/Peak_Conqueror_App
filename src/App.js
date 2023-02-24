@@ -14,7 +14,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/routes/all" component={MountainRoutes}/>
-                    <Route path="/weather/:mountain/:location/:numberOfDays" component={Forecast}/>
+                    <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
                     <Route path="/users/register" component={RegisterPage}/>
                     <Route path="/users/login" component={LoginPage}/>
                     <Route path="/logout">
