@@ -16,10 +16,8 @@ export const Forecast = (props) => {
     ////////////////////
     const [allLocations, setAllLocations] = useState([]);
 
-
-
     function forecastButtonsHandler(e, days) {
-        e.preventDefault();
+       // e.preventDefault();
         setNumberOfDays(days);
         getWeatherForLocation(mountain, mountain_location, numberOfDays).then(result => setWeatherData(result));
     }

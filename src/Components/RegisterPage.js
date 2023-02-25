@@ -1,7 +1,20 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {register} from "../services/usersService";
 
 export const RegisterPage = (props) => {
+
+    // const [firstName, setFirstName] = useState('');
+    // const [lastName, setLastName] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [confPassword, setConfPassword] = useState('');
+
+    const [user, setUser] = useState({
+        firstName: '', lastName: '', username: '', email: '', password: '', confirmPassword: ''
+    });
+    const {firstName, lastName, username, email, password, confirmPassword} = user;
 
     useEffect(() => {
         const currentStyles = document.body.style;
@@ -11,6 +24,25 @@ export const RegisterPage = (props) => {
         currentStyles.backgroundAttachment = `fixed`;
         currentStyles.backgroundSize = `cover`;
     });
+
+    async function formSubmitHandler(e) {
+        e.preventDefault();
+        let formElement = e.target;
+        let formData = new FormData(formElement);
+        let data = Object.fromEntries(formData);
+
+        if (password !== confirmPassword) return alert('Passwords must match!')
+        debugger
+        await register(data);
+
+        formElement.reset();
+    }
+
+    function inputChangeHandler(e) {
+        let {name, value} = e.target;
+        setUser({...user, [name]: value});
+        console.log(value)
+    }
 
     return (
         <section id="registration" style={{margin: "0 auto", paddingTop: "125px"}}>
@@ -23,49 +55,64 @@ export const RegisterPage = (props) => {
                                 <h1>Register</h1>
                             </div>
 
-                            <form action="/users/register" method="post"
-                                  className="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+                            <form onSubmit={formSubmitHandler} action="/users/register" method="post"
+                                  className="main-form mx-auto col-md-8 d-flex
+                                  flex-column justify-content-center">
 
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <div className="form-group">
-                                            <label className="form-label text-white" htmlFor="firstName">First name</label>
+                                            <label className="form-label text-white" htmlFor="firstName">First
+                                                name</label>
                                             <input type="text" className="form-control"
-                                                   id="firstName"
+                                                   id="firstName" value={firstName}
+                                                   min={3} max={20} required={true}
+                                                   onChange={inputChangeHandler}
+                                                   name="firstName"
                                                    placeholder="Enter your first name"/>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group">
-                                            <label htmlFor="lastName" className="form-label text-white">Last name</label>
+                                            <label htmlFor="lastName" className="form-label text-white">Last
+                                                name</label>
                                             <input type="text" className="form-control"
-                                                   id="lastName"
+                                                   id="lastName" value={lastName}
+                                                   min={3} max={20} required={true}
+                                                   name="lastName"
+                                                   onChange={inputChangeHandler}
                                                    placeholder="Enter your last name"/>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="form-group">
                                     <label htmlFor="username-field" className="text-white">Username</label>
                                     <input type="text" className="form-control"
+                                           value={username} min={5} max={20} required={true}
+                                           onChange={inputChangeHandler}
+                                           name="username"
                                            id="username-field" placeholder="Username..."/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="emailField" className="text-white">Email</label>
                                     <input type="email" id="emailField" placeholder="something@domain.com"
-                                           className="form-control"/>
+                                           onChange={inputChangeHandler} name="email"
+                                           value={email} required={true} className="form-control"/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="password-field" className="text-white">Password</label>
                                     <input type="password"
+                                           value={password} min={7} max={15} required={true}
+                                           onChange={inputChangeHandler} name="password"
                                            className="form-control" id="password-field" placeholder="Password..."/>
-
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="confirmPassword" className="text-white">Repeat password</label>
-                                    <input type="password" id="confirmPassword"
+                                    <input type="password" id="confirmPassword" value={confirmPassword} required={true}
+                                           onChange={inputChangeHandler} name="confirmPassword"
                                            className="form-control" placeholder="Password..."/>
                                 </div>
+
                                 <div className="row d-flex justify-content-between">
                                     <div className="col col-md-4">
                                         <div className="button-holder d-flex">
