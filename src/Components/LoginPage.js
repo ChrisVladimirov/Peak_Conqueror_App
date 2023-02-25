@@ -1,9 +1,14 @@
 import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import styles from "./LoginPage.module.css";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {login} from "../services/usersService";
 
-export const LoginPage = ({username, password}) => {
+export const LoginPage = (props) => {
+    const initialUser = {username: '', password: ''};
+
+    const [user, setUser] = useState(initialUser);
+    const {username, password} = user;
 
     useEffect(() => {
         const currentStyle = document.body.style;
@@ -14,6 +19,26 @@ export const LoginPage = ({username, password}) => {
         currentStyle.backgroundSize = "cover";
     });
 
+    async function loginSubmitFormHandler(e) {
+        let formElement = e.target;
+        let formData = new FormData(formElement);
+        let data = Object.fromEntries(formData);
+
+        await login(data);
+
+        loginFormResetHandler();
+        props.history.push('/');
+    }
+
+    function loginFormResetHandler() {
+        setUser(() => initialUser)
+    }
+
+    function inputChangeHandler(e) {
+        let {name, value} = e.target;
+        setUser({...user, [name]: value});
+    }
+
     return (
         <div className="container justify-content-center" style={{margin: "0 auto", paddingTop: "125px"}}>
             <h2 className="text-center text-white">Login</h2>
@@ -22,14 +47,17 @@ export const LoginPage = ({username, password}) => {
                     <FormGroup>
                         <FormLabel htmlFor="username-field"
                                    className="text-white font-weight-bold">Username</FormLabel>
-                        <FormControl className="text-white font-weight-bold" id="username-field" placeholder="Username..." name="username"
-                                     defaultValue={username} type={"text"} title="Username"/>
+                        <FormControl className="text-white font-weight-bold" id="username-field"
+                                     onChange={inputChangeHandler}
+                                     placeholder="Username..." name="username" required={true}
+                                     value={username} type={"text"} title="Username"/>
                     </FormGroup>
                     <FormGroup>
                         <FormLabel htmlFor="password-field" className="text-white font-weight-bold">
                             Username</FormLabel>
-                        <FormControl title="Password" placeholder="Password..." defaultValue={password}
-                                     type={"password"} id="password-field"
+                        <FormControl title="Password" placeholder="Password..." value={password}
+                                     type={"password"} id="password-field" required={true}
+                                     onChange={inputChangeHandler}
                                      className="text-white font-weight-bold" name="password"/>
                     </FormGroup>
                     <FormCheck className="text-white">
