@@ -4,13 +4,6 @@ import {register} from "../services/usersService";
 
 export const RegisterPage = (props) => {
 
-    // const [firstName, setFirstName] = useState('');
-    // const [lastName, setLastName] = useState('');
-    // const [username, setUsername] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [confPassword, setConfPassword] = useState('');
-
     const [user, setUser] = useState({
         firstName: '', lastName: '', username: '', email: '', password: '', confirmPassword: ''
     });
@@ -32,16 +25,15 @@ export const RegisterPage = (props) => {
         let data = Object.fromEntries(formData);
 
         if (password !== confirmPassword) return alert('Passwords must match!')
-        debugger
         await register(data);
 
         formElement.reset();
+        props.history.push('/users/login');
     }
 
     function inputChangeHandler(e) {
         let {name, value} = e.target;
         setUser({...user, [name]: value});
-        console.log(value)
     }
 
     return (
