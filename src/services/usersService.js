@@ -3,8 +3,8 @@ import {get, patch} from "../api/request";
 const baseUrl = 'http://localhost:8080/users/';
 
 const endpoints = {
-    'edit-thoughts': '/me/edit-thoughts',
-    'getAllUsers': '/all'
+    'edit-thoughts': '/users/me/edit-thoughts',
+    'getAllUsers': '/users/all'
 }
 
 /*export const register = async (userdata) => {
@@ -45,13 +45,13 @@ export const login = async (userData) => {
 }
 
 export const getAllUsers = async () => {
-    return await get(baseUrl + endpoints.getAllUsers);
+    return await get(endpoints.getAllUsers);
 }
 
 export const getParticularUser = async (userId) => {
-    return await get(baseUrl + `/${userId}`);
+    return await get(`/users/${userId}`);
 }
 
 export const editThoughts = async (editedThoughts) => {
-    await patch(baseUrl + endpoints["edit-thoughts"], editedThoughts);
+    await patch(endpoints["edit-thoughts"], editedThoughts);
 }
