@@ -1,9 +1,12 @@
 import {Button, Col, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {getUserData} from "../api/util";
 
 export const NavbarTemplate = (props) => {
     const brandContainerStyle = {width: '10%', margin: 0, float: 'left'};
     const brandImgStyle = {width: '70px', height: '60px'};
+
+    const user = getUserData();
 
     return (
         <div>
@@ -21,8 +24,14 @@ export const NavbarTemplate = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto col-9 justify-content-evenly">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/users/login">Login</Nav.Link>
-                        <Nav.Link href="/users/register">Register</Nav.Link>
+
+                        {user ? <>
+                                <Nav.Link className="guest" href="/users/login">Login</Nav.Link>
+                                <Nav.Link className="guest" href="/users/register">Register</Nav.Link>
+                            </>
+                            : null
+                        }
+
                         <Nav.Link href="/users/all">Users</Nav.Link>
                         <Nav.Link>
                             <Link
@@ -33,16 +42,26 @@ export const NavbarTemplate = (props) => {
                             <NavDropdown.Item href="/routes/all">
                                 View All Routes
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/routes/create">
-                                Add a Route
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="/routes/edit">
-                                Edit Route
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider/>
-                            <NavDropdown.Item href="/routes/delete">
-                                For Admins only
-                            </NavDropdown.Item>
+
+                            {
+                                (user.roles.includes('ADMIN')
+                                    || user.roles.includes('OWNER'))
+                                    ?
+                                    <>
+                                        <NavDropdown.Item href="/routes/create" className="admin">
+                                            Add a Route
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item href="/routes/edit" className="admin">
+                                            Edit Route
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Divider/>
+                                        <NavDropdown.Item href="/routes/delete" className="admin">
+                                            For Admins only
+                                        </NavDropdown.Item>
+                                    </>
+                                    : null
+                            }
+
                         </NavDropdown>
                     </Nav>
                     <Container style={{float: 'right'}}>
