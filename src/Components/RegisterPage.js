@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {register} from "../services/usersService";
+import {register} from "../api/user.js";
 
 export const RegisterPage = (props) => {
 
@@ -16,7 +16,7 @@ export const RegisterPage = (props) => {
         currentStyles.backgroundRepeat = `no-repeat`;
         currentStyles.backgroundAttachment = `fixed`;
         currentStyles.backgroundSize = `cover`;
-    });
+    }, []);
 
     async function formSubmitHandler(e) {
         e.preventDefault();
@@ -28,7 +28,7 @@ export const RegisterPage = (props) => {
         await register(data);
 
         formElement.reset();
-        props.history.push('/users/login');
+        props.history.push('/');
     }
 
     function inputChangeHandler(e) {

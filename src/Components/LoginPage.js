@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styles from "./LoginPage.module.css";
 import {useEffect, useState} from "react";
 import {login} from "../services/usersService";
+import {login as customLogin} from "../api/user.js";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};
@@ -17,14 +18,16 @@ export const LoginPage = (props) => {
         currentStyle.backgroundRepeat = "no-repeat";
         currentStyle.backgroundAttachment = "fixed";
         currentStyle.backgroundSize = "cover";
-    });
+    },[]);
 
     async function loginSubmitFormHandler(e) {
+        e.preventDefault();
         let formElement = e.target;
         let formData = new FormData(formElement);
         let data = Object.fromEntries(formData);
 
         await login(data);
+        await customLogin(data);
 
         loginFormResetHandler();
         props.history.push('/');
@@ -35,6 +38,7 @@ export const LoginPage = (props) => {
     }
 
     function inputChangeHandler(e) {
+        e.preventDefault()
         let {name, value} = e.target;
         setUser({...user, [name]: value});
     }
@@ -43,11 +47,12 @@ export const LoginPage = (props) => {
         <div className="container justify-content-center" style={{margin: "0 auto", paddingTop: "125px"}}>
             <h2 className="text-center text-white">Login</h2>
             <Container className="justify-content-center flex-column col-md-8 mx-auto">
-                <Form action={"/users/login"} method="post" className="main-form">
+                <Form action={"/users/login"} method="post" className="main-form"
+                      onSubmit={loginSubmitFormHandler}>
                     <FormGroup>
                         <FormLabel htmlFor="username-field"
                                    className="text-white font-weight-bold">Username</FormLabel>
-                        <FormControl className="text-white font-weight-bold" id="username-field"
+                        <FormControl className="font-weight-bold" id="username-field"
                                      onChange={inputChangeHandler}
                                      placeholder="Username..." name="username" required={true}
                                      value={username} type={"text"} title="Username"/>
@@ -58,7 +63,7 @@ export const LoginPage = (props) => {
                         <FormControl title="Password" placeholder="Password..." value={password}
                                      type={"password"} id="password-field" required={true}
                                      onChange={inputChangeHandler}
-                                     className="text-white font-weight-bold" name="password"/>
+                                     className="font-weight-bold" name="password"/>
                     </FormGroup>
                     <FormCheck className="text-white">
                         <label><input name="rememberMe" type={"checkbox"}/>Remember me</label>
