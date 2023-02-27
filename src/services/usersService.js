@@ -1,6 +1,13 @@
+import {get, patch} from "../api/request";
+
 const baseUrl = 'http://localhost:8080/users/';
 
-export const register = async (userdata) => {
+const endpoints = {
+    'edit-thoughts': '/me/edit-thoughts',
+    'getAllUsers': '/all'
+}
+
+/*export const register = async (userdata) => {
     try {
         let response = await fetch(baseUrl + 'register', {
             method: 'post',
@@ -19,33 +26,32 @@ export const register = async (userdata) => {
         alert(e.message);
         throw e;
     }
-}
+}*/
 
-export const login = async ({username, password}) => {
+export const login = async (userData) => {
     try {
-        let response = await fetch(baseUrl + 'login', {
+        await fetch(baseUrl + 'login', {
             method: 'post',
-            body: JSON.stringify({username, password}),
-            headers: {'Content-Type': 'application/json'}
+            body: JSON.stringify(userData),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
-
-        if (response.status === 204) return response;
-
-        if (!response.ok) {
-            let error = response.json();
-            throw new Error(error.message);
-        }
-        return await response.json();
     } catch (e) {
-        console.log(e.message);
+        console.log(e);
         throw new Error(e);
     }
 }
 
 export const getAllUsers = async () => {
-    return await (await fetch(baseUrl + 'all')).json();
+    return await get(baseUrl + endpoints.getAllUsers);
 }
 
 export const getParticularUser = async (userId) => {
-    return await (await fetch(baseUrl + `${userId}`)).json();
+    return await get(baseUrl + `/${userId}`);
+}
+
+export const editThoughts = async (editedThoughts) => {
+    await patch(baseUrl + endpoints["edit-thoughts"], editedThoughts);
 }
