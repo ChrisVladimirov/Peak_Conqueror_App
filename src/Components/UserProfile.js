@@ -10,7 +10,7 @@ export const UserProfile = (props) => {
 
     useEffect(() => {
         let currentStyle = document.body.style;
-        currentStyle.backgroundImage = `url("/images/weather-images/forecast/firy-dark-clouds.jpg")`;
+        currentStyle.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599535/peak-climber-pictures/weather-images/firy-dark-clouds_wcmr1u.jpg")`;
         currentStyle.backgroundPosition = 'center center';
         currentStyle.backgroundRepeat = 'no-repeat';
         currentStyle.backgroundAttachment = 'fixed';

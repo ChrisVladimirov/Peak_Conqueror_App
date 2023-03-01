@@ -28,7 +28,6 @@ export const Footer = (props) => {
 
                             <hr className="w-100 clearfix d-md-none"/>
 
-
                             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
                                 <p>
@@ -45,9 +44,7 @@ export const Footer = (props) => {
                                 </p>
                             </div>
 
-
                             <hr className="w-100 clearfix d-md-none"/>
-
 
                             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">
@@ -59,9 +56,9 @@ export const Footer = (props) => {
                                 </p>
                                 <p>
                                     <Link className="text-white"
-                                          mountain="Rila"
+                                          /*mountain="Rila"
                                           mountain_location="Malyovitsa"
-                                          numberOfDays={5}
+                                          numberOfDays={5}*/
                                           to="/weather/Rila/Malyovitsa/5">Check the forecast</Link>
                                 </p>
                                 <p>
