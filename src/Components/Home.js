@@ -2,8 +2,14 @@ import {Link} from "react-router-dom";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import ImageControlledCarousel from "./ImageControlledCarousel";
+import {useEffect} from "react";
 
 export const Home = (props) => {
+
+    useEffect(() => {
+        document.body.style.backgroundImage = 'none'
+    })
+
     return (
         <>
             <Header/>

@@ -1,18 +1,28 @@
 import {Button, Col, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {getUserData} from "../api/util";
+import {logout} from "../api/user";
+import {useState} from "react";
 
 export const NavbarTemplate = (props) => {
     const brandContainerStyle = {width: '10%', margin: 0, float: 'left'};
     const brandImgStyle = {width: '70px', height: '60px'};
 
-    const user = getUserData();
+    const initialUser = getUserData();
+    const [user, setUser] = useState(initialUser);
+
+    function logoutClickHandler(e) {
+        e.preventDefault();
+        logout();
+        setUser(null);
+        //props.history.push("/");
+    }
 
     return (
         <div>
             <Navbar bg="dark" expand="lg" fixed={"top"} className="rounded navbar-dark">
                 <Container style={brandContainerStyle}>
-                    <Navbar.Brand href="/" className="align-middle">
+                    <Navbar.Brand href="/" className="align-middle" style={{marginRight: '3em'}}>
                         <img style={brandImgStyle} className="rounded"
                              src="https://res.cloudinary.com/dhr071bhp/image/upload/v1672604824/peak-climber-pictures/logo-cropped_gubpum.jpg"
                              alt="PeakConqueror Logo"/>
@@ -23,13 +33,11 @@ export const NavbarTemplate = (props) => {
                                aria-label="Toggle navigation"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto col-9 justify-content-evenly">
-                        <Nav.Link href="/">Home</Nav.Link>
 
-                        {user ? <>
+                        {!initialUser ? <>
                                 <Nav.Link className="guest" href="/users/login">Login</Nav.Link>
-                                <Nav.Link className="guest" href="/users/register">Register</Nav.Link>
                             </>
-                            : null
+                            : <Nav.Link href="/">Home</Nav.Link>
                         }
 
                         <Nav.Link href="/users/all">Users</Nav.Link>
@@ -43,26 +51,37 @@ export const NavbarTemplate = (props) => {
                                 View All Routes
                             </NavDropdown.Item>
 
-                            {
-                                (user.roles.includes('ADMIN')
-                                    || user.roles.includes('OWNER'))
-                                    ?
-                                    <>
-                                        <NavDropdown.Item href="/routes/create" className="admin">
-                                            Add a Route
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Item href="/routes/edit" className="admin">
-                                            Edit Route
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider/>
-                                        <NavDropdown.Item href="/routes/delete" className="admin">
-                                            For Admins only
-                                        </NavDropdown.Item>
-                                    </>
-                                    : null
+                            {!!initialUser ?
+                                (
+                                    (initialUser.roles.includes('ADMIN')
+                                        || initialUser.roles.includes('OWNER'))
+                                        ?
+                                        <>
+                                            <NavDropdown.Item href="/routes/create" className="admin">
+                                                Add a Route
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/routes/edit" className="admin">
+                                                Edit Route
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Divider/>
+                                            <NavDropdown.Item href="/routes/delete" className="admin">
+                                                For Admins only
+                                            </NavDropdown.Item>
+                                        </>
+                                        : null
+                                )
+                                : null
                             }
 
                         </NavDropdown>
+
+                        {!!initialUser
+                            ? <Nav.Link onClick={logoutClickHandler} >
+                                Logout
+                            </Nav.Link>
+                            : null
+                        }
+
                     </Nav>
                     <Container style={{float: 'right'}}>
                         <Form>
