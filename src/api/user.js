@@ -8,13 +8,13 @@ let endpoints = {
 }
 
 export async function register(userdata) {
-    const {id, firstName, lastName, username, email, roles} = await post(endpoints.register, {userdata});
+    const {id, firstName, lastName, username, email, roles} = await post(endpoints.register, userdata);
     setUserData({id, firstName, lastName, username, email, roles});
 }
 
 export async function login(userdata) {
-    let {id, username, email, roles} = await get(`/${userdata['username']}`);
-    setUserData({id, username, email, roles});
+    let {id, firstName, lastName, username, email, thoughts, roles} = await get(`/users/${userdata['username']}`);
+    setUserData({id, firstName, lastName, username, email, thoughts, roles});
 }
 
 export function logout() {

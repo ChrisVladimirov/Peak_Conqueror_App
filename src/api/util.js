@@ -1,6 +1,5 @@
 export function getUserData() {
-    const data = JSON.parse(sessionStorage.getItem('userData'))
-    return data;
+    return JSON.parse(sessionStorage.getItem('userData'));
 }
 
 export function setUserData(data) {
