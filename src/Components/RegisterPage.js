@@ -9,6 +9,8 @@ export const RegisterPage = (props) => {
     });
     const {firstName, lastName, username, email, password, confirmPassword} = user;
 
+    const [errors, setErrors] = useState(null);
+
     useEffect(() => {
         const currentStyles = document.body.style;
         currentStyles.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672598736/peak-climber-pictures/chakar-voivoda_fej8td.jpg")`;
@@ -25,7 +27,13 @@ export const RegisterPage = (props) => {
         let data = Object.fromEntries(formData);
 
         if (password !== confirmPassword) return alert('Passwords must match!')
-        await register(data);
+        let response = await register(data);
+
+        if (response) {
+            response = Object.values(response);
+            setErrors(response);
+            return;
+        }
 
         formElement.reset();
         props.history.push('/');
@@ -37,7 +45,7 @@ export const RegisterPage = (props) => {
     }
 
     return (
-        <section id="registration" style={{margin: "0 auto", paddingTop: "125px"}}>
+        <section id="registration" style={{margin: "0 auto", paddingTop: "3em", paddingBottom: '4em'}}>
             <div className="section-center">
                 <div className="container">
                     <div className="row">
@@ -112,6 +120,16 @@ export const RegisterPage = (props) => {
                                                    value="Register"/>
                                         </div>
                                     </div>
+
+                                    {!!errors ?
+                                        <div>
+                                            <ol>{errors.map(e =>
+                                                <li style={{listStyle: 'none', fontWeight: 'bold'}}
+                                                    className="text-white bg-danger">{e}</li>)}</ol>
+                                        </div>
+                                        : null
+                                    }
+
                                     <div className="col col-sm-3">
                                         <p style={{color: 'white'}}>
                                             <b>Already a member?</b>

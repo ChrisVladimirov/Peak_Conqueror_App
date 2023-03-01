@@ -7,27 +7,6 @@ const endpoints = {
     'getAllUsers': '/users/all'
 }
 
-/*export const register = async (userdata) => {
-    try {
-        let response = await fetch(baseUrl + 'register', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(userdata)
-        });
-
-        if (response.status === 204) return response;
-
-        if (!response.ok) {
-            let error = response.json();
-            throw new Error(error.message);
-        }
-        return await response.json();
-    } catch (e) {
-        alert(e.message);
-        throw e;
-    }
-}*/
-
 export const login = async (userData) => {
     try {
         await fetch(baseUrl + 'login', {

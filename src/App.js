@@ -19,7 +19,7 @@ function App() {
                         <Route path="/users/register" component={RegisterPage}/>
                         <Route path="/users/login" component={LoginPage}/>
                         <Route path="/users/me" component={UserProfile}/>
-                        <Route path="/logout">
+                        <Route path="/users/logout">
                             <Redirect to="/"/>
                         </Route>
                     </Switch>

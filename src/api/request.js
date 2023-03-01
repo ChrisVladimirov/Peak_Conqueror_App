@@ -24,6 +24,10 @@ async function api(method, url, payload) {
             return response;
         }
 
+        if (response.status === 400) {
+            return response;
+        }
+
         if (!response.ok) {
             let error = await response.json();
             alert(error.message);
