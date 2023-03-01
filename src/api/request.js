@@ -10,7 +10,8 @@ async function api(method, url, payload) {
 
     if (payload !== undefined) {
         options.body = JSON.stringify(payload);
-        options.headers['Content-Type'] = 'application/json'
+        options.headers['Content-Type'] = 'application/json';
+        options.headers['Accept'] = 'application/json';
     }
 
     let user = getUserData();
@@ -25,6 +26,10 @@ async function api(method, url, payload) {
         }
 
         if (response.status === 400) {
+            return response;
+        }
+
+        if (response.status === 401) {
             return response;
         }
 

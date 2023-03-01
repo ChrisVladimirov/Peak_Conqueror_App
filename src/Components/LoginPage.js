@@ -2,8 +2,7 @@ import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "rea
 import {Link} from "react-router-dom";
 import styles from "./LoginPage.module.css";
 import {useEffect, useState} from "react";
-import {login} from "../services/usersService";
-import {login as customLogin} from "../api/user.js";
+import {login} from "../api/user.js";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};
@@ -18,7 +17,7 @@ export const LoginPage = (props) => {
         currentStyle.backgroundRepeat = "no-repeat";
         currentStyle.backgroundAttachment = "fixed";
         currentStyle.backgroundSize = "cover";
-    },[]);
+    }, []);
 
     async function loginSubmitFormHandler(e) {
         e.preventDefault();
@@ -26,8 +25,10 @@ export const LoginPage = (props) => {
         let formData = new FormData(formElement);
         let data = Object.fromEntries(formData);
 
-        await login(data);
-        await customLogin(data);
+        let response = await login(data);
+        if (response) {
+            return alert("Invalid username or password!")
+        }
 
         loginFormResetHandler();
         props.history.push('/');

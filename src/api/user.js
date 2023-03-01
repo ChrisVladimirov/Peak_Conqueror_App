@@ -18,8 +18,13 @@ export async function register(userdata) {
 }
 
 export async function login(userdata) {
-    let {id, firstName, lastName, username, email, thoughts, roles} = await get(`/users/${userdata['username']}`);
-    setUserData({id, firstName, lastName, username, email, thoughts, roles});
+    let response = await post(endpoints.login, userdata);
+    if (response.status === 401) {
+        return await response;
+    } else {
+        let {id, firstName, lastName, username, email, thoughts, roles} = response;
+        setUserData({id, firstName, lastName, username, email, thoughts, roles});
+    }
 }
 
 export function logout() {
