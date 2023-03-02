@@ -1,0 +1,54 @@
+table {
+    background-color: white;
+}
+
+#routeGallery {
+    display: grid;
+    grid-column: 1/4;
+    grid-row: 3;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+#routeGallery img {
+    width: 100%;
+    height: 100%;
+}
+
+#routeDescription {
+    background-color: rgba(168, 146, 130, 0.8);
+    grid-column: 2/4;
+    grid-row: 2;
+}
+
+i {
+    font-size: 2.25em;
+}
+
+#visualisation {
+    padding-top: 50px;
+}
+
+#routeDescription {
+    text-align: center;
+    padding-top: 2em;
+    padding-right: 4.3em;
+}
+
+#routeGallery {
+    padding-right: 50px;
+    padding-top: 70px;
+    padding-left: 50px;
+    margin: 5em;
+}
+
+.route-aside {
+    width: 30%;
+    padding-left: 15px;
+    padding-right: 30px;
+    float: left
+}
+
+#routeBriefInfo {
+    padding-top: 150px
+}

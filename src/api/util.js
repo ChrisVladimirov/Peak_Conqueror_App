@@ -9,3 +9,10 @@ export function setUserData(data) {
 export function clearUserData() {
     sessionStorage.removeItem('userData')
 }
+
+export function isAdmin() {
+    let userData = getUserData();
+    if (!!userData) {
+        return userData.roles.includes('ADMIN');
+    } else return false;
+}

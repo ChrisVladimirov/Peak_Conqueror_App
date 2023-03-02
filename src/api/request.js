@@ -5,13 +5,12 @@ const baseUrl = 'http://localhost:8080';
 async function api(method, url, payload) {
     let options = {
         method,
-        headers: {}
+        headers: {'Accept': 'application/json'}
     }
 
     if (payload !== undefined) {
         options.body = JSON.stringify(payload);
         options.headers['Content-Type'] = 'application/json';
-        options.headers['Accept'] = 'application/json';
     }
 
     let user = getUserData();
