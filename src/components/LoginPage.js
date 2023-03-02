@@ -1,6 +1,5 @@
 import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import styles from "./LoginPage.module.css";
 import {useEffect, useState} from "react";
 import {login} from "../api/user.js";
 
@@ -76,7 +75,7 @@ export const LoginPage = (props) => {
                             </div>
                         </div>
                         <div className="col col-sm-3">
-                            <h6 className={styles.signupForFree} style={{color: 'white'}}>Not a member?</h6>
+                            <h6 className="signupForFree" style={{color: 'white'}}>Not a member?</h6>
                             <Link to="/users/register">
                                 <p>Sign up for free</p>
                             </Link>

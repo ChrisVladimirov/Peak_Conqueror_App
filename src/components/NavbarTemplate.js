@@ -15,7 +15,6 @@ export const NavbarTemplate = (props) => {
         e.preventDefault();
         logout();
         setUser(null);
-        //props.history.push("/");
     }
 
     return (
@@ -76,7 +75,7 @@ export const NavbarTemplate = (props) => {
                         </NavDropdown>
 
                         {!!initialUser
-                            ? <Nav.Link onClick={logoutClickHandler} >
+                            ? <Nav.Link onClick={logoutClickHandler}>
                                 Logout
                             </Nav.Link>
                             : null

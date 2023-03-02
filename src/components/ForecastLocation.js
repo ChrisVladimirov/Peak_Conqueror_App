@@ -5,7 +5,6 @@ export const ForecastLocation = ({place, setters}) => {
     const [setMountain, setMountain_Location, setNumberOfDays] = setters;
 
     function linkClickedHandler(e) {
-        //e.preventDefault();
         setMountain(place.mountainName);
         setMountain_Location(place.locationName);
         setNumberOfDays(5);
