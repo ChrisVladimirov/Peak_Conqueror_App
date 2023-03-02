@@ -1,12 +1,12 @@
 import './App.css';
 import './common-styles.css';
-import {Home} from "./Components/Home";
+import {Home} from "./components/Home";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {MountainRoutes} from "./Components/MountainRoutes";
-import {LoginPage} from "./Components/LoginPage";
-import {RegisterPage} from "./Components/RegisterPage";
-import {Forecast} from "./Components/Forecast";
-import {UserProfile} from "./Components/UserProfile";
+import {MountainRoutes} from "./components/MountainRoutes";
+import {LoginPage} from "./components/LoginPage";
+import {RegisterPage} from "./components/RegisterPage";
+import {Forecast} from "./components/Forecast";
+import {UserProfile} from "./components/UserProfile";
 
 function App() {
     return (
