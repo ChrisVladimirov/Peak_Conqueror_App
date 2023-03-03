@@ -9,6 +9,7 @@ import {Forecast} from "./components/Forecast";
 import {UserProfile} from "./components/UserProfile";
 import {RouteDetails} from "./components/RouteDetails";
 import {getUserData} from "./api/util";
+import {UsersAll} from "./components/UsersAll";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
                     <Route path="/users/register" component={RegisterPage}/>
                     <Route path="/users/login" component={LoginPage}/>
+                    <Route path="/users/all" component={UsersAll}/>
                     {
                         !!getUserData()
                             ? <Route path="/users/me" component={UserProfile}/>
