@@ -13,7 +13,7 @@ async function api(method, url, payload) {
         options.headers['Content-Type'] = 'application/json';
     }
 
-    let user = getUserData();
+    //let user = getUserData();
     /*if (user) {
         options.headers['X-Authorization'] = user.accessToken;
     }*/
@@ -34,7 +34,7 @@ async function api(method, url, payload) {
 
         if (!response.ok) {
             let error = await response.json();
-            alert(error.message);
+            //alert(error.message);
             throw new Error(error.message);
         }
 
@@ -44,7 +44,7 @@ async function api(method, url, payload) {
 
         return await response.json();
     } catch (e) {
-        alert(e.message);
+        //alert(e.message);
         throw e;
     }
 }
