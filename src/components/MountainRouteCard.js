@@ -15,11 +15,11 @@ export const MountainRouteCard = (props) => {
                 }
                 <h4 className="card-text">{routeDTO.toughnessLevel.toughness}</h4>
                 <h4 className="card-text">Duration: {routeDTO.duration}h</h4>
-                <h5 className="card-text">{routeDTO.itinerary}</h5>
+                {/*<h5 className="card-text">{routeDTO.itinerary}</h5>
                 {!!routeDTO.coordinates ?
                     <p>routeDTO.coordinates</p>
                     : null
-                }
+                }*/}
                 <span className="card-body">
                     <Link to={`/routes/${routeDTO.id}`}>View Route</Link>
                 </span>

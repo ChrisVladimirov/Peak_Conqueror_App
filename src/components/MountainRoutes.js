@@ -35,7 +35,7 @@ export const MountainRoutes = (props) => {
                 <Suspense fallback={<p>Loading...</p>}>
                     {routes.length > 0 ?
                         routes.map(route => <MountainRouteCard key={route.id} routeDTO={route}/>)
-                        : <p>No routes yet :(</p>
+                        : <p className="justify-content-center">Loading...</p>
                     }
                 </Suspense>
             </section>

@@ -10,11 +10,10 @@ export const RoutePhotosCarousel = ({pictures}) => {
 
     return (
         <Carousel activeIndex={imgIndex} onSelect={handleSelect}>
-            {pictures.length > 0 ?
-                pictures.map(p => {
-                    // noinspection BadExpressionStatementJS
-                    <Carousel.Item>
-                        <img className="d-block w-50" src={p.url} alt={p.title}/>
+            {pictures?.length > 0 ?
+                pictures?.map(p => {
+                    return <Carousel.Item>
+                        <img className="d-block w-100" key={p.id} src={p.url} alt={p.title}/>
                     </Carousel.Item>
                 }) : null}
         </Carousel>

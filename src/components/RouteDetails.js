@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {getLikesForRoute, getParticularRoute, likeARoute} from "../services/routeService.js";
-import {getUserData, isAdmin} from "../api/util";
-import ImageControlledCarousel from "./ImageControlledCarousel";
+import {isAdmin} from "../api/util";
 import {Footer} from "./Footer";
 import {NavbarTemplate} from "./NavbarTemplate";
 import {RoutePhotosCarousel} from "./RoutePhotosCarousel";
+import styles from "./RouteDetails.module.css";
 
 export const RouteDetails = (props) => {
 
@@ -13,12 +13,19 @@ export const RouteDetails = (props) => {
     const [currentRoute, setCurrentRoute] = useState(null);
     const [likes, setLikes] = useState(0);
     const [isItLiked, setIsItLiked] = useState(false);
+    const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
-            getParticularRoute(routeId).then(d => setCurrentRoute(d))
+            getParticularRoute(routeId).then(d => setCurrentRoute(d));
         }, 1000)
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPictures(oldPictures => currentRoute?.pictures || oldPictures);
+        }, 1000)
+    }, [currentRoute?.pictures])
 
     useEffect(() => {
         setTimeout(() => {
@@ -32,32 +39,28 @@ export const RouteDetails = (props) => {
         setIsItLiked(true);
     }
 
-    const pictures = Object.values(currentRoute?.pictures);
-
     return (
         <>
             <NavbarTemplate/>
             <div className="wrapper">
 
-                <h4>{currentRoute?.name}</h4>
+                <h2 className="mbr-section-title align-left mbr-fonts-style pb-3 mbr-light display-2">
+                    {currentRoute?.name}
+                </h2>
 
-                <aside className="route-aside">
+                <aside className={styles.routeAside}>
                     <section id="routeBriefInfo">
                         <div className="section-left">
                             <div className="container">
                                 <table className="table text-center">
                                     <thead className="table-dark">
                                     <tr>
-                                        <th colSpan="2">Route name:
-                                            {currentRoute?.name}
-                                        </th>
+                                        <th colSpan="2">Route name: {currentRoute?.name}</th>
                                     </tr>
                                     </thead>
                                     <tr>
                                         <td><i className="fa-regular fa-hourglass"></i></td>
-                                        <td>Duration:
-                                            {currentRoute?.duration}
-                                        </td>
+                                        <td>Duration: {currentRoute?.duration}h</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -75,11 +78,10 @@ export const RouteDetails = (props) => {
                                                                  style={{color: 'orange'}}></i>,
                                                     'CHALLENGING_ALPINE': <i className="fas fa-hiking"
                                                                              style={{color: 'red'}}></i>
-                                                }[currentRoute?.toughnessLevel.level]
+                                                }[currentRoute?.toughnessLevel.toughness]
                                             }
                                         </td>
-                                        <td>Difficulty:
-                                            {currentRoute?.toughnessLevel.level}
+                                        <td>Level: {currentRoute?.toughnessLevel.toughness}
                                         </td>
                                     </tr>
                                 </table>
@@ -87,21 +89,23 @@ export const RouteDetails = (props) => {
                         </div>
                     </section>
 
-                    <section id="visualisation">
-                        <div>
-                            <div className="container justify-content-center">
-                                <h3 className="text-warning text-center">View Route on Map</h3>
-                                <div className="justify-content-center" id="map"></div>
+                    {currentRoute?.coordinates === null
+                        ? null : <section id="visualisation">
+                            <div>
+                                <div className="container justify-content-center">
+                                    <h3 className="text-warning text-center">View Route on Map</h3>
+                                    <div className="justify-content-center" id="map"></div>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    }
 
                 </aside>
 
                 <main>
-                    <section id="routeDescription">
+                    <section className={styles.routeDescription}>
                         <h3>About the Route</h3>
-                        <p>{currentRoute?.itinerary}"></p>
+                        <p>{currentRoute?.itinerary}</p>
                     </section>
                     <aside>
                         {!isItLiked
@@ -113,7 +117,7 @@ export const RouteDetails = (props) => {
                             : null
                         }
                     </aside>
-                    <section id="routeGallery">
+                    <section className={styles.routeGallery}>
                         <RoutePhotosCarousel pictures={pictures}/>
                     </section>
                 </main>
