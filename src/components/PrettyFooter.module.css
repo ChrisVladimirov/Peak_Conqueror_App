@@ -1,0 +1,14 @@
+.myPrettyFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.7rem;
+}
+
+.prettyFooterCopyright {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.prettyFooterBody {
+    background-color: #CC7F4B;
+}

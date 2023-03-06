@@ -33,7 +33,7 @@ export const NavbarTemplate = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto col-9 justify-content-evenly">
 
-                        {!initialUser ? <>
+                        {!user ? <>
                                 <Nav.Link className="guest" href="/users/login">Login</Nav.Link>
                             </>
                             : <Nav.Link href="/">Home</Nav.Link>
@@ -50,10 +50,10 @@ export const NavbarTemplate = (props) => {
                                 View All Routes
                             </NavDropdown.Item>
 
-                            {!!initialUser ?
+                            {!!user ?
                                 (
-                                    (initialUser.roles.includes('ADMIN')
-                                        || initialUser.roles.includes('OWNER'))
+                                    (user.roles.includes('ADMIN')
+                                        || user.roles.includes('OWNER'))
                                         ?
                                         <>
                                             <NavDropdown.Item href="/routes/create" className="admin">
@@ -74,7 +74,7 @@ export const NavbarTemplate = (props) => {
 
                         </NavDropdown>
 
-                        {!!initialUser
+                        {!!user
                             ? <Nav.Link onClick={logoutClickHandler}>
                                 Logout
                             </Nav.Link>

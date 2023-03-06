@@ -1,15 +1,17 @@
-import {Link} from "react-router-dom";
-import {isAdmin} from "../api/util.js";
+import {isOwner} from "../api/util.js";
 import styles from "./UserCard.module.css";
+import {demoteUser, promoteUser} from "../services/usersService.js";
 
 export const UserCard = ({userDTO}) => {
 
-    function promoteHandler(e) {
-        //todo
+    async function promoteHandler(e, userId) {
+        e.preventDefault();
+        await promoteUser(userId);
     }
 
-    function demoteHandler(e) {
-        //todo
+    async function demoteHandler(e, userId) {
+        e.preventDefault();
+        await demoteUser(userId);
     }
 
     return (
@@ -26,10 +28,12 @@ export const UserCard = ({userDTO}) => {
                     <p className="card-text">{userDTO.thoughts}</p>
                     {/*<Link to="/journey/invite" className="card-link">Invite to Journey</Link>*/}
                     <br/>
-                    {isAdmin() ?
+                    {isOwner() ?
                         userDTO.roles.includes('ADMIN') ?
-                            <a className="card-link" onClick={demoteHandler}>Demote</a>
-                            : <a className="card-link" onClick={promoteHandler}>Promote</a>
+                            <a className="card-link btn btn-dark"
+                               onClick={(e) => demoteHandler(e, userDTO.id)}>Demote</a>
+                            : <a className="card-link btn btn-dark"
+                                 onClick={(e) => promoteHandler(e, userDTO.id)}>Promote</a>
                         : null
                     }
                 </div>

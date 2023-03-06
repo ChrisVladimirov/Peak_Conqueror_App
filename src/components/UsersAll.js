@@ -1,6 +1,11 @@
 import {useEffect, useState} from "react";
 import {UserCard} from "./UserCard";
 import {getAllUsers} from "../services/usersService.js";
+import {NavbarTemplate} from "./NavbarTemplate";
+import {Footer} from "./Footer";
+import {Header} from "./Header";
+import styles from "./UserCard.module.css";
+import {getUserData} from "../api/util";
 
 export const UsersAll = (props) => {
 
@@ -8,7 +13,8 @@ export const UsersAll = (props) => {
 
     useEffect(() => {
         setTimeout(() => {
-            getAllUsers().then(r => setAllUsers(r));
+            getAllUsers().then(d => d.filter(
+               u=> u.username !== getUserData().username)).then(r => setAllUsers(r));
         }, 1000)
     }, [])
 
@@ -19,19 +25,20 @@ export const UsersAll = (props) => {
         currentStyle.backgroundRepeat = 'no-repeat';
         currentStyle.backgroundAttachment = 'fixed';
         currentStyle.backgroundSize = 'cover';
-    })
+    }, [])
 
     return (
         <>
-            <section className="d-flex justify-content-center">
+            <Header/>
+            <section className={`${styles.allUsersSection} d-flex justify-content-center`}>
                 <div className="card-group">
                     {allUsers.length > 0 ?
                         allUsers.map(u => <UserCard key={u.id} userDTO={u}/>)
-                        : <p>No users!</p>
+                        : <p className="text-white">No users!</p>
                     }
                 </div>
             </section>
-
+            <Footer/>
         </>
     );
 }
