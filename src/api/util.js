@@ -16,3 +16,10 @@ export function isAdmin() {
         return userData.roles.includes('ADMIN');
     } else return false;
 }
+
+export function isOwner() {
+    let userData = getUserData();
+    if (!!userData) {
+        return userData.roles.includes('OWNER');
+    } else return false;
+}

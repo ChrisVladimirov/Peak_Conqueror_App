@@ -1,7 +1,7 @@
 import {Button, Col, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import {getUserData} from "../api/util";
-import {logout} from "../api/user";
+import {getUserData} from "../api/util.js";
+import {logout} from "../api/authService.js";
 import {useState} from "react";
 
 export const NavbarTemplate = (props) => {

@@ -1,10 +1,11 @@
-import {get, patch} from "../api/request";
+import {get, patch} from "../api/request.js";
 
-const baseUrl = 'http://localhost:8080/users/';
+//const baseUrl = 'http://localhost:8080/users/';
 
 const endpoints = {
-    'edit-thoughts': '/users/me/edit-thoughts',
     'getAllUsers': '/users/all',
+    'getParticularUser': (userId) => `/users/${userId}`,
+    'edit-thoughts': '/users/me/edit-thoughts',
     'promoteUser': (userId) => `/admins/promote?userId=${userId}`,
     'demoteUser': (userId) => `/admins/demote?adminId=${userId}`
 }
@@ -14,7 +15,7 @@ export const getAllUsers = async () => {
 }
 
 export const getParticularUser = async (userId) => {
-    return await get(`/users/${userId}`);
+    return await get(endpoints.getParticularUser(userId));
 }
 
 export const promoteUser = async (userId) => {

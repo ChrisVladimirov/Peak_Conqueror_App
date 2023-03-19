@@ -1,17 +1,23 @@
 import {isOwner} from "../api/util.js";
 import styles from "./UserCard.module.css";
 import {demoteUser, promoteUser} from "../services/usersService.js";
+import {Link} from "react-router-dom";
+//import {useState} from "react";
 
 export const UserCard = ({userDTO}) => {
+
+    //const [isRoleChanged, setIsRoleChanged] = useState(false);
 
     async function promoteHandler(e, userId) {
         e.preventDefault();
         await promoteUser(userId);
+        //setIsRoleChanged(true);
     }
 
     async function demoteHandler(e, userId) {
         e.preventDefault();
         await demoteUser(userId);
+        //setIsRoleChanged(true);
     }
 
     return (
@@ -30,9 +36,9 @@ export const UserCard = ({userDTO}) => {
                     <br/>
                     {isOwner() ?
                         userDTO.roles.includes('ADMIN') ?
-                            <a className="card-link btn btn-dark"
+                            <a className="card-link btn btn-dark" href="#"
                                onClick={(e) => demoteHandler(e, userDTO.id)}>Demote</a>
-                            : <a className="card-link btn btn-dark"
+                            : <a href="#" className="card-link btn btn-dark"
                                  onClick={(e) => promoteHandler(e, userDTO.id)}>Promote</a>
                         : null
                     }

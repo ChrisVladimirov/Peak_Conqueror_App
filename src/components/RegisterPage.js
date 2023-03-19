@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {register} from "../api/user.js";
+import {Link, useHistory, useLocation} from "react-router-dom";
+import {register} from "../api/authService.js";
 
 export const RegisterPage = (props) => {
 
@@ -20,6 +20,8 @@ export const RegisterPage = (props) => {
         currentStyles.backgroundSize = `cover`;
     }, []);
 
+    let history = useHistory();
+
     async function formSubmitHandler(e) {
         e.preventDefault();
         let formElement = e.target;
@@ -27,16 +29,15 @@ export const RegisterPage = (props) => {
         let data = Object.fromEntries(formData);
 
         if (password !== confirmPassword) return alert('Passwords must match!')
-        let response = await register(data);
-
-        if (response) {
+        /*let response = */await register(data);
+        /*if (response) {
             response = Object.values(response);
             setErrors(response);
             return;
-        }
-
+        }*/
         formElement.reset();
-        props.history.push('/');
+        //props.history.push('/');
+        history.push('/users/login');
     }
 
     function inputChangeHandler(e) {

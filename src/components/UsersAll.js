@@ -14,7 +14,7 @@ export const UsersAll = (props) => {
     useEffect(() => {
         setTimeout(() => {
             getAllUsers().then(d => d.filter(
-               u=> u.username !== getUserData().username)).then(r => setAllUsers(r));
+                u => u.username !== getUserData().username)).then(r => setAllUsers(r));
         }, 1000)
     }, [])
 
