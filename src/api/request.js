@@ -1,11 +1,11 @@
-import {clearUserData, getUserData} from "./util";
+import {clearUserData, getUserData} from "./util.js";
 
 const baseUrl = 'http://localhost:8080';
 
 async function api(method, url, payload) {
     let options = {
         method,
-        headers: {'Accept': 'application/json'}
+        headers: {}
     }
 
     if (payload !== undefined) {
@@ -13,10 +13,10 @@ async function api(method, url, payload) {
         options.headers['Content-Type'] = 'application/json';
     }
 
-    //let user = getUserData();
-    /*if (user) {
-        options.headers['X-Authorization'] = user.accessToken;
-    }*/
+    let user = getUserData();
+    if (user) {
+        options.headers['Authorization'] = `Bearer ${user.token}`;
+    }
 
     try {
         let response = await fetch(baseUrl + url, options);
@@ -24,9 +24,9 @@ async function api(method, url, payload) {
             return response;
         }
 
-        if (response.status === 400) {
+        /*if (response.status === 400) {
             return response;
-        }
+        }*/
 
         if (response.status === 401) {
             return response;
@@ -49,12 +49,12 @@ async function api(method, url, payload) {
     }
 }
 
-let get = api.bind(null, 'get');
-let post = api.bind(null, 'post');
-let put = api.bind(null, 'put');
-let del = api.bind(null, 'delete');
-let patch = api.bind(null, 'patch');
+let get = api.bind(null, 'GET');
+let post = api.bind(null, 'POST');
+let put = api.bind(null, 'PUT');
+let patch = api.bind(null, 'PATCH');
+let del = api.bind(null, 'DELETE');
 
 export {
-    get, post, put, del, patch
+    get, post, put, patch, del
 }
