@@ -20,7 +20,7 @@ async function api(method, url, payload) {
 
     try {
         let response = await fetch(baseUrl + url, options);
-        if (response.status === 204) {
+        if (response.status === 204 || response.status === 201) {
             return response;
         }
 
