@@ -1,0 +1,11 @@
+.likedRoute {
+    margin-top: 1.5em;
+    color: gray;
+    animation-duration: 1s;
+}
+
+.notLikedRoute {
+    margin-top: 1.5em;
+    color: black;
+    animation-duration: 1s;
+}
