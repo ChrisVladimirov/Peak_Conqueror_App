@@ -1,15 +1,3 @@
-table {
-    background-color: white;
-}
-
-/*#routeGallery {
-    display: grid;
-    grid-column: 1/4;
-    grid-row: 3;
-    grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}*/
-
 #routeGallery img {
     width: 100%;
     height: 100%;
@@ -27,18 +15,24 @@ td > i {
     text-align: center;
     padding-top: 2em;
     padding-right: 4.3em;
-    /*background-color: rgba(168, 146, 130, 0.8);*/
     grid-column: 2/4;
     grid-row: 2;
 }
 
 .routeGallery {
-    padding-right: 50px;
+    /*padding-right: 50px;
     padding-top: 70px;
-    padding-left: 50px;
-    margin-left: 4em;
-    margin-top: 5em;
+    padding-left: 50px;*/
+    padding: 4em;
+    /*margin-left: 20em;
+    margin-top: 20em;
+    margin-bottom: 15em;*/
+    /*margin: auto auto 2em;*/
+    margin: 10em auto 10em;
+    display: flow;
     justify-content: center;
+    max-width: 40em;
+    max-height: 25em;
 }
 
 .routeAside {
@@ -48,6 +42,11 @@ td > i {
     float: left
 }
 
-#routeBriefInfo {
-    padding-top: 150px
+.routeBriefInfo {
+    background-color: darkgrey;
+}
+
+.iconBackground {
+    background-color: darkgrey;
+    padding: 0.3em;
 }

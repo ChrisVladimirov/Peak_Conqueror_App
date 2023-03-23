@@ -3,11 +3,9 @@ import {Link} from "react-router-dom";
 import {getUserData} from "../api/util.js";
 import {logout} from "../api/authService.js";
 import {useState} from "react";
+import styles from "./NavbarTemplate.module.css";
 
 export const NavbarTemplate = (props) => {
-    const brandContainerStyle = {width: '10%', margin: 0, float: 'left'};
-    const brandImgStyle = {width: '70px', height: '60px'};
-
     const initialUser = getUserData();
     const [user, setUser] = useState(initialUser);
 
@@ -20,12 +18,12 @@ export const NavbarTemplate = (props) => {
     return (
         <div>
             <Navbar bg="dark" expand="lg" fixed={"top"} className="rounded navbar-dark">
-                <Container style={brandContainerStyle}>
-                    <Navbar.Brand href="/" className="align-middle" style={{marginRight: '3em'}}>
-                        <img style={brandImgStyle} className="rounded"
+                <Container className={styles.brandContainerStyle}>
+                    <Navbar.Brand href="/" className="align-middle">
+                        <img className={`rounded ${styles.brandImgStyle}`}
                              src="https://res.cloudinary.com/dhr071bhp/image/upload/v1672604824/peak-climber-pictures/logo-cropped_gubpum.jpg"
                              alt="PeakConqueror Logo"/>
-                        <span style={{marginLeft: '10px'}}>PeakConqueror</span>
+                        <span style={{marginLeft: '10px', marginRight: '1em'}}>PeakConqueror</span>
                     </Navbar.Brand>
                 </Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" aria-expanded="false"
@@ -36,7 +34,7 @@ export const NavbarTemplate = (props) => {
                         {!user ? <>
                                 <Nav.Link className="guest" href="/users/login">Login</Nav.Link>
                             </>
-                            : <Nav.Link href="/">Home</Nav.Link>
+                            : <Nav.Link href="/users/me">Me</Nav.Link>
                         }
 
                         <Nav.Link href="/users/all">Users</Nav.Link>

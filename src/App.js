@@ -10,6 +10,8 @@ import {UserProfile} from "./components/UserProfile";
 import {RouteDetails} from "./components/RouteDetails";
 import {getUserData} from "./api/util";
 import {UsersAll} from "./components/UsersAll";
+import {AddRoutePage} from "./components/AddRoutePage";
+import {EditRoutePage} from "./components/EditRoutePage";
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/routes/all" component={MountainRoutes}/>
+                    <Route path="/routes/add" component={AddRoutePage}/>
+                    <Route path="/routes/edit" component={EditRoutePage}/>
                     <Route path="/routes/:id" component={RouteDetails}/>
                     <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
                     <Route path="/users/register" component={RegisterPage}/>

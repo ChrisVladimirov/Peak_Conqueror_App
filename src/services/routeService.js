@@ -16,8 +16,8 @@ export async function getAllRoutes() {
     return await get(endpoints.routesAll);
 }
 
-export function getParticularRoute(routeId) {
-    return get(endpoints.particularRoute(routeId));
+export async function getParticularRoute(routeId) {
+    return await get(endpoints.particularRoute(routeId));
 }
 
 /*export async function getLikesForRoute(routeId) {

@@ -1,17 +1,16 @@
-import {getAllRoutes} from "../services/routeService";
+import {getAllRoutes} from "../services/routeService.js";
 import {useEffect, useState, Suspense} from "react";
 import {MountainRouteCard} from "./MountainRouteCard";
+import {NavbarTemplate} from "./NavbarTemplate";
 
 export const MountainRoutes = (props) => {
 
     const [routes, setRoutes] = useState([]);
 
     useEffect(() => {
-        setTimeout(() => {
             getAllRoutes().then(r => {
                 setRoutes(r);
             });
-        }, 1000)
     }, []);
 
     useEffect(() => {
@@ -26,6 +25,7 @@ export const MountainRoutes = (props) => {
     // noinspection JSValidateTypes
     return (
         <div>
+            <NavbarTemplate/>
             <div className="headingTeaser mt-5">
                 <h4>Have you been there?</h4>
                 <h5>...if not, what are you waiting for!?</h5>

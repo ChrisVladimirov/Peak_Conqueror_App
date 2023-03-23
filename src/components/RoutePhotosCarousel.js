@@ -12,8 +12,8 @@ export const RoutePhotosCarousel = ({pictures}) => {
         <Carousel activeIndex={imgIndex} onSelect={handleSelect}>
             {pictures?.length > 0 ?
                 pictures?.map(p => {
-                    return <Carousel.Item>
-                        <img className="d-block w-100" key={p.id} src={p.url} alt={p.title}/>
+                    return <Carousel.Item key={p.id} >
+                        <img className="justify-content-center w-100" src={p.url} alt={p.title}/>
                     </Carousel.Item>
                 }) : null}
         </Carousel>

@@ -16,10 +16,20 @@
 
 .nav-container-search {
     float: right;
-    /*justify-content: space-evenly;*/
 }
 
 .navbar-search-button {
     width: auto;
     float: left;
+}
+
+.brandContainerStyle {
+    max-width: 10%;
+    margin-right: 3em;
+    float: left;
+}
+
+.brandImgStyle {
+    width: 70px;
+    height: 60px;
 }

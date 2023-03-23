@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {getLikesForRoute, getParticularRoute, likeARoute} from "../services/routeService.js";
-import {isAdmin} from "../api/util";
+import {isAdmin} from "../api/util.js";
 import {Footer} from "./Footer";
 import {NavbarTemplate} from "./NavbarTemplate";
 import {RoutePhotosCarousel} from "./RoutePhotosCarousel";
@@ -16,22 +16,24 @@ export const RouteDetails = (props) => {
     const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
-        setTimeout(() => {
-            getParticularRoute(routeId).then(d => setCurrentRoute(d));
-        }, 1000)
+        let someFunc = async () => {
+            let response = await getParticularRoute(routeId);
+            setCurrentRoute(response);
+            setPictures(currentRoute.pictures)
+        }
+        someFunc()
     }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setPictures(oldPictures => currentRoute?.pictures || oldPictures);
-        }, 1000)
-    }, [currentRoute?.pictures])
+    /*useEffect(() => {
+        if (currentRoute?.pictures.length > 0)
+            setPictures(currentRoute.pictures)
+    }, [currentRoute?.pictures])*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         setTimeout(() => {
             getLikesForRoute(routeId).then(r => setLikes(r));
         }, 1000)
-    }, []);
+    }, []);*/
 
     async function likeClickHandler(e) {
         e.preventDefault();
@@ -42,87 +44,91 @@ export const RouteDetails = (props) => {
     return (
         <>
             <NavbarTemplate/>
-            <div className="wrapper">
+            {currentRoute != null ?
+                <div className="wrapper">
+                    <h2 className="mbr-section-title align-left mbr-fonts-style pb-3 mbr-light display-2">
+                        {currentRoute.name}
+                    </h2>
 
-                <h2 className="mbr-section-title align-left mbr-fonts-style pb-3 mbr-light display-2">
-                    {currentRoute?.name}
-                </h2>
-
-                <aside className={styles.routeAside}>
-                    <section id="routeBriefInfo">
-                        <div className="section-left">
-                            <div className="container">
-                                <table className="table text-center">
-                                    <thead className="table-dark">
-                                    <tr>
-                                        <th colSpan="2">Route name: {currentRoute?.name}</th>
-                                    </tr>
-                                    </thead>
-                                    <tr>
-                                        <td><i className="fa-regular fa-hourglass"></i></td>
-                                        <td>Duration: {currentRoute?.duration}h</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            {
+                    <aside className={styles.routeAside}>
+                        <section id="routeBriefInfo" className={styles.routeBriefInfo}>
+                            <div className="section-left">
+                                <div className="container">
+                                    <table className="table text-center">
+                                        <thead className="table-dark">
+                                        <tr>
+                                            <th colSpan="2">Route name: {currentRoute.name}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><i className="fa-regular fa-hourglass"></i></td>
+                                            <td>Duration: {currentRoute.duration}h</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
                                                 {
-                                                    'EASY': <i className="fas fa-hiking"
-                                                               style={{color: 'lightgreen'}}></i>,
-                                                    'MODERATE': <i className="fas fa-hiking"
-                                                                   style={{color: 'darkgreen'}}></i>,
-                                                    'AVERAGE': <i className="fas fa-hiking"
-                                                                  style={{color: 'blue'}}></i>,
-                                                    'DIFFICULT': <i className="fas fa-hiking"
-                                                                    style={{color: 'yellow'}}></i>,
-                                                    'ALPINE': <i className="fas fa-hiking"
-                                                                 style={{color: 'orange'}}></i>,
-                                                    'CHALLENGING_ALPINE': <i className="fas fa-hiking"
-                                                                             style={{color: 'red'}}></i>
-                                                }[currentRoute?.toughnessLevel.toughness]
-                                            }
-                                        </td>
-                                        <td>Level: {currentRoute?.toughnessLevel.toughness}
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
+                                                    {
+                                                        'EASY': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                   style={{color: 'lightgreen'}}></i>,
+                                                        'MODERATE': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                       style={{color: 'darkgreen'}}></i>,
+                                                        'AVERAGE': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                      style={{color: 'blue'}}></i>,
+                                                        'DIFFICULT': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                        style={{color: 'yellow'}}></i>,
+                                                        'ALPINE': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                     style={{color: 'orange'}}></i>,
+                                                        'CHALLENGING_ALPINE': <i className={`fas fa-hiking ${styles.iconBackground}`}
+                                                                                 style={{color: 'red'}}></i>
+                                                    }[currentRoute.toughnessLevel.toughness]
+                                                }
+                                            </td>
+                                            <td>Level: {(currentRoute.toughnessLevel.toughness)
+                                                .replaceAll('_', ' ')}
+                                            </td>
+                                        </tr>
+                                        </tbody>
 
-                    {currentRoute?.coordinates === null
-                        ? null : <section id="visualisation">
-                            <div>
-                                <div className="container justify-content-center">
-                                    <h3 className="text-warning text-center">View Route on Map</h3>
-                                    <div className="justify-content-center" id="map"></div>
+                                    </table>
                                 </div>
                             </div>
                         </section>
-                    }
 
-                </aside>
+                        {currentRoute.coordinates === null
+                            ? null : <section id="visualisation">
+                                <div>
+                                    <div className="container justify-content-center">
+                                        <h3 className="text-warning text-center">View Route on Map</h3>
+                                        <div className="justify-content-center" id="map"></div>
+                                    </div>
+                                </div>
+                            </section>
+                        }
 
-                <main>
-                    <section className={styles.routeDescription}>
-                        <h3>About the Route</h3>
-                        <p>{currentRoute?.itinerary}</p>
-                    </section>
-                    <aside>
-                        {!isItLiked
-                            ? <a className="btn btn-dark" onClick={likeClickHandler}>Like</a>
-                            : null
-                        }
-                        {isAdmin()
-                            ? <div>{likes}</div>
-                            : null
-                        }
                     </aside>
-                    <section className={styles.routeGallery}>
-                        <RoutePhotosCarousel pictures={pictures}/>
-                    </section>
-                </main>
-            </div>
 
+                    <main>
+                        <section className={styles.routeDescription}>
+                            <h3>About the Route</h3>
+                            <p>{currentRoute.itinerary}</p>
+                        </section>
+                        {/*<aside>
+                            {!isItLiked
+                                ? <a className="btn btn-dark" onClick={likeClickHandler}>Like</a>
+                                : null
+                            }
+                            {isAdmin()
+                                ? <div>{likes}</div>
+                                : null
+                            }
+                        </aside>*/}
+                        <section className={styles.routeGallery}>
+                            <RoutePhotosCarousel pictures={pictures}/>
+                        </section>
+                    </main>
+                </div>
+                : <p>'Loading...'</p>}
             <Footer/>
         </>
     );
