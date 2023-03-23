@@ -2,6 +2,6 @@
 @import "LoginPage.module.css";
 @import "src/components/RouteDetails.module.css";
 @import "MountainRoutes.css";
-@import "NavbarTemplate.module.css";
+/*@import "NavbarTemplate.module.css";*/
 @import "UserProfile.module.css";
 @import "src/components/UserCard.module.css";
