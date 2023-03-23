@@ -1,8 +1,8 @@
-import {editThoughts} from "../services/usersService";
+import {editThoughts} from "../../services/usersService.js";
 import {useEffect, useState} from "react";
-import {getUserData} from "../api/util";
-import {PrettyFooter} from "./PrettyFooter";
-import {NavbarTemplate} from "./NavbarTemplate";
+import {getUserData} from "../../api/util.js";
+import {PrettyFooter} from "../commonsDomain/PrettyFooter";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 
 export const UserProfile = (props) => {
 

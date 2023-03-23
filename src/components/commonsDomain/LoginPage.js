@@ -1,7 +1,7 @@
 import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {login} from "../api/authService.js";
+import {login} from "../../api/authService.js";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};

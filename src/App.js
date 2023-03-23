@@ -1,17 +1,17 @@
 import './App.css';
 import './common-styles.css';
-import {Home} from "./components/Home";
+import {Home} from "./components/commonsDomain/Home";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {MountainRoutes} from "./components/MountainRoutes";
-import {LoginPage} from "./components/LoginPage";
-import {RegisterPage} from "./components/RegisterPage";
-import {Forecast} from "./components/Forecast";
-import {UserProfile} from "./components/UserProfile";
-import {RouteDetails} from "./components/RouteDetails";
-import {getUserData} from "./api/util";
-import {UsersAll} from "./components/UsersAll";
-import {AddRoutePage} from "./components/AddRoutePage";
-import {EditRoutePage} from "./components/EditRoutePage";
+import {MountainRoutes} from "./components/routesDomain/MountainRoutes";
+import {LoginPage} from "./components/commonsDomain/LoginPage";
+import {RegisterPage} from "./components/commonsDomain/RegisterPage";
+import {Forecast} from "./components/forecastDomain/Forecast";
+import {UserProfile} from "./components/usersDomain/UserProfile";
+import {RouteDetails} from "./components/routesDomain/RouteDetails";
+import {getUserData} from "./api/util.js";
+import {UsersAll} from "./components/usersDomain/UsersAll";
+import {AddRoutePage} from "./components/routesDomain/AddRoutePage";
+import {EditRoutePage} from "./components/routesDomain/EditRoutePage";
 
 function App() {
     return (

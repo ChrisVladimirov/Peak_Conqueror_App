@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {register} from "../api/authService.js";
+import {register} from "../../api/authService.js";
 
 export const RegisterPage = (props) => {
 

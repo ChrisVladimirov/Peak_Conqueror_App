@@ -1,7 +1,7 @@
-import {getAllRoutes} from "../services/routeService.js";
+import {getAllRoutes} from "../../services/routeService.js";
 import {useEffect, useState, Suspense} from "react";
 import {MountainRouteCard} from "./MountainRouteCard";
-import {NavbarTemplate} from "./NavbarTemplate";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 
 export const MountainRoutes = (props) => {
 

@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
-import {getLikesForRoute, getParticularRoute, likeARoute} from "../services/routeService.js";
-import {isAdmin} from "../api/util.js";
-import {Footer} from "./Footer";
-import {NavbarTemplate} from "./NavbarTemplate";
+import {getParticularRoute, likeARoute} from "../../services/routeService.js";
+import {Footer} from "../commonsDomain/Footer";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {RoutePhotosCarousel} from "./RoutePhotosCarousel";
 import styles from "./RouteDetails.module.css";
 

@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import styles from "./MountainRouteCard.module.css";
-import {deleteRoute, likeARoute, removeLike} from "../services/routeService.js";
-import {isAdmin} from "../api/util";
+import {deleteRoute, likeARoute, removeLike} from "../../services/routeService.js";
+import {isAdmin} from "../../api/util.js";
 
 export const MountainRouteCard = (props) => {
 
@@ -23,12 +23,11 @@ export const MountainRouteCard = (props) => {
 
     async function deleteRouteHandler(e) {
         e.preventDefault();
-        let confirmation = window.confirm("Are you sure you want to proceed " +
-            "with the deletion " +
-            "of this route entry?");
+        let confirmation = window.confirm("Are you sure you want to proceed\nwith the deletion\nof this route entry?");
         if (confirmation) {
             await deleteRoute(routeDTO.id);
         }
+
     }
 
     return (

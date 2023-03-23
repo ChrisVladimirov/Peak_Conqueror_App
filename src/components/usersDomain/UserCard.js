@@ -1,6 +1,6 @@
-import {isOwner} from "../api/util.js";
+import {isOwner} from "../../api/util.js";
 import styles from "./UserCard.module.css";
-import {demoteUser, promoteUser} from "../services/usersService.js";
+import {demoteUser, promoteUser} from "../../services/usersService.js";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 

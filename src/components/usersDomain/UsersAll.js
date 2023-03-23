@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {UserCard} from "./UserCard";
-import {getAllUsers} from "../services/usersService.js";
-import {NavbarTemplate} from "./NavbarTemplate";
-import {Footer} from "./Footer";
-import {Header} from "./Header";
+import {getAllUsers} from "../../services/usersService.js";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import {Footer} from "../commonsDomain/Footer";
+import {Header} from "../commonsDomain/Header";
 import styles from "./UserCard.module.css";
-import {getUserData} from "../api/util";
+import {getUserData} from "../../api/util.js";
 
 export const UsersAll = (props) => {
 

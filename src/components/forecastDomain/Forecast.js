@@ -1,8 +1,8 @@
 import {useEffect, Suspense, useState} from "react";
 import {ForecastDayDTO} from "./ForecastDayDTO";
-import {NavbarTemplate} from "./NavbarTemplate";
-import {getAllForecastLocationNames, getWeatherForLocation} from "../services/forecastService";
-import {Footer} from "./Footer";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import {getAllForecastLocationNames, getWeatherForLocation} from "../../services/forecastService.js";
+import {Footer} from "../commonsDomain/Footer";
 import {Link} from "react-router-dom";
 import {ForecastLocation} from "./ForecastLocation";
 
