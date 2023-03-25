@@ -12,6 +12,9 @@ import {getUserData} from "./api/util.js";
 import {UsersAll} from "./components/usersDomain/UsersAll";
 import {AddRoutePage} from "./components/routesDomain/AddRoutePage";
 import {EditRoutePage} from "./components/routesDomain/EditRoutePage";
+import {PicturesPage} from "./components/picturesDomain/PicturesPage";
+import {CreatePicturePage} from "./components/picturesDomain/CreatePicturePage";
+import {EditPicturePage} from "./components/picturesDomain/EditPicturePage";
 
 function App() {
     return (
@@ -20,12 +23,15 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/routes/all" component={MountainRoutes}/>
-                    <Route path="/routes/add" component={AddRoutePage}/>
+                    <Route path="/routes/create" component={AddRoutePage}/>
                     <Route path="/routes/edit" component={EditRoutePage}/>
                     <Route path="/routes/:id" component={RouteDetails}/>
                     <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
                     <Route path="/users/register" component={RegisterPage}/>
                     <Route path="/users/login" component={LoginPage}/>
+                    <Route path="/pictures/all" component={PicturesPage}/>
+                    <Route path="/pictures/create" component={CreatePicturePage}/>
+                    <Route path="/pictures/edit" component={EditPicturePage}/>
                     {
                         !!getUserData()
                             ? <>

@@ -24,11 +24,6 @@ export const RouteDetails = (props) => {
     }, []);
 
     /*useEffect(() => {
-        if (currentRoute?.pictures.length > 0)
-            setPictures(currentRoute.pictures)
-    }, [currentRoute?.pictures])*/
-
-    /*useEffect(() => {
         setTimeout(() => {
             getLikesForRoute(routeId).then(r => setLikes(r));
         }, 1000)

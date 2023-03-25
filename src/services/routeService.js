@@ -5,6 +5,7 @@ const endpoints = {
     'routesAll': '/routes/all',
     'particularRoute': (routeId) => `/routes/${routeId}`,
     'getLikesForRoute': (routeId) => `/routes/${routeId}/likes`,
+    'getToughnessLevels': '/routes/toughness-levels/all',
     'likeARoute': (userId, routeId) => `/routes/${routeId}/like?user=${userId}`,
     'removeLike': (userId, routeId) => `/routes/${routeId}/removeLike?user=${userId}`,
     'createRoute': '/routes/create',
@@ -23,6 +24,10 @@ export async function getParticularRoute(routeId) {
 /*export async function getLikesForRoute(routeId) {
     return get(endpoints.getLikesForRoute(routeId));
 }*/
+
+export async function getAllToughnessLevels() {
+    return await get(endpoints.getToughnessLevels);
+}
 
 export async function createARoute(routeData) {
     await post(endpoints.createRoute, routeData);
