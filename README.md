@@ -74,14 +74,14 @@ The project is licensed under the [GPL-3.0 license](LICENSE)
 Login page:
 ![image](https://user-images.githubusercontent.com/84380496/188314254-ac01d54d-8ac6-4811-9f0a-437a65f23ace.png)
 
-Home page for logged-in user:
-![image](https://user-images.githubusercontent.com/84380496/188314342-d433f38a-1f0a-4d63-b103-2b54cf0844b8.png)
-![image](https://user-images.githubusercontent.com/84380496/188314372-ac874e06-6195-4c5d-a225-423b2d18591d.png)
+Home page:
+![image](https://user-images.githubusercontent.com/84380496/227797267-63ba4ebe-e97e-48d0-a700-10b189db3871.png)
+![image](https://user-images.githubusercontent.com/84380496/227797284-7a0033f1-8fb1-4018-ab61-5f73e73e1f8f.png)
 
 Routes functionality:
-![image](https://user-images.githubusercontent.com/84380496/188314423-36ffe5f3-a494-41a4-b19d-bf256742b621.png)
+![image](https://user-images.githubusercontent.com/84380496/227797194-5d163f0b-fb2a-4deb-ae7a-c41bb7d4da87.png)
 Brief Info about every route can be viewed by mountaineers:
-![image](https://user-images.githubusercontent.com/84380496/188314498-fc34ccc0-a380-4b61-94e5-61ffa26b4887.png)
+![image](https://user-images.githubusercontent.com/84380496/227797117-c454be22-d04c-4f5d-b9fd-3af5d5a17ec1.png)
 
 Weather Forecast functionality:
 ![image](https://user-images.githubusercontent.com/84380496/188314816-7f333803-175d-495f-a8b4-612272da47c8.png)
