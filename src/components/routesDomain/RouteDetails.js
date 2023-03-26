@@ -80,7 +80,6 @@ export const RouteDetails = (props) => {
                                             </td>
                                         </tr>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
@@ -102,7 +101,7 @@ export const RouteDetails = (props) => {
                     <main>
                         <section className={styles.routeDescription}>
                             <h3>About the Route</h3>
-                            <p>{currentRoute.itinerary}</p>
+                            <p className={styles.itineraryStyle}>{currentRoute.itinerary}</p>
                         </section>
                         {/*<aside>
                             {!isItLiked

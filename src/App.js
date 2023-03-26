@@ -31,7 +31,6 @@ function App() {
                     <Route path="/users/login" component={LoginPage}/>
                     <Route path="/pictures/all" component={PicturesPage}/>
                     <Route path="/pictures/create" component={CreatePicturePage}/>
-                    <Route path="/pictures/edit" component={EditPicturePage}/>
                     {
                         !!getUserData()
                             ? <>

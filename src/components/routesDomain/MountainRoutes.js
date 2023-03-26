@@ -22,7 +22,6 @@ export const MountainRoutes = (props) => {
         currentStyles.backgroundSize = `cover`;
     }, [])
 
-    // noinspection JSValidateTypes
     return (
         <div>
             <NavbarTemplate/>
@@ -35,7 +34,7 @@ export const MountainRoutes = (props) => {
                 <Suspense fallback={<p>Loading...</p>}>
                     {routes.length > 0 ?
                         routes.map(route => <MountainRouteCard key={route.id} routeDTO={route}/>)
-                        : <p className="justify-content-center">Loading...</p>
+                        : <p className="justify-content-center">Loading routes...</p>
                     }
                 </Suspense>
             </section>

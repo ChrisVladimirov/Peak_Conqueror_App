@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto%20Serif&display=swap");
+
 #routeGallery img {
     width: 100%;
     height: 100%;
@@ -19,15 +21,17 @@ td > i {
     grid-row: 2;
 }
 
+.itineraryStyle {
+    margin-top: 3em;
+    margin-right: 2em;
+    margin-left: 4em;
+    font-family: "Noto Serif", serif;
+    font-size: large;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 .routeGallery {
-    /*padding-right: 50px;
-    padding-top: 70px;
-    padding-left: 50px;*/
     padding: 4em;
-    /*margin-left: 20em;
-    margin-top: 20em;
-    margin-bottom: 15em;*/
-    /*margin: auto auto 2em;*/
     margin: 10em auto 10em;
     display: flow;
     justify-content: center;
@@ -39,7 +43,8 @@ td > i {
     width: 30%;
     padding-left: 15px;
     padding-right: 30px;
-    float: left
+    float: left;
+    margin-right: 2em;
 }
 
 .routeBriefInfo {

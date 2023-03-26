@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 import styles from "./MountainRouteCard.module.css";
 import {deleteRoute, likeARoute, removeLike} from "../../services/routeService.js";
-import {isAdmin} from "../../api/util.js";
+import {getUserData, isAdmin} from "../../api/util.js";
 
 export const MountainRouteCard = (props) => {
 
@@ -27,7 +27,6 @@ export const MountainRouteCard = (props) => {
         if (confirmation) {
             await deleteRoute(routeDTO.id);
         }
-
     }
 
     return (
@@ -45,17 +44,21 @@ export const MountainRouteCard = (props) => {
                     <Link to={`/routes/${routeDTO.id}`}>View Route</Link>
                 </span>
                 <br/>
-                <i className={`fa-regular fa-thumbs-up fa-2xl 
+                {!!getUserData() ?
+                    <>
+                        <i className={`fa-regular fa-thumbs-up fa-2xl 
                     ${isLiked === true ? styles.likedRoute : styles.notLikedRoute}`} onClick={likeClickHandler}>
-                </i>
-                <p>{routeDTO.likes} likes</p>
+                        </i>
 
+                    </>
+                    : null}
                 {isAdmin() ?
-                    <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>
-                    :
-                    null
+                    <>
+                        <p>{routeDTO.likes} likes</p>
+                        <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>
+                    </>
+                    : null
                 }
-
             </div>
         </div>
     );
