@@ -18,16 +18,13 @@ export const RouteDetails = (props) => {
         let someFunc = async () => {
             let response = await getParticularRoute(routeId);
             setCurrentRoute(response);
-            setPictures(currentRoute.pictures)
         }
-        someFunc()
+        someFunc();
     }, []);
 
-    /*useEffect(() => {
-        setTimeout(() => {
-            getLikesForRoute(routeId).then(r => setLikes(r));
-        }, 1000)
-    }, []);*/
+    useEffect(() => {
+        setPictures(currentRoute?.pictures)
+    }, [currentRoute])
 
     async function likeClickHandler(e) {
         e.preventDefault();
