@@ -1,5 +1,4 @@
 import {get, patch} from "../api/request.js";
-import {getUserData} from "../api/util.js";
 
 const endpoints = {
     'getAllUsers': '/users/all',
@@ -15,7 +14,6 @@ export const getAllUsers = async () => {
 
 export const getParticularUser = async (username) => {
     return await get(endpoints.getParticularUser(username));
-   // return get(endpoints.getParticularUser(username)).then()
 }
 
 export const promoteUser = async (userId) => {

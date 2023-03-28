@@ -1,8 +1,7 @@
-import {isOwner} from "../../api/util.js";
 import styles from "./UserCard.module.css";
 import {demoteUser, promoteUser} from "../../services/usersService.js";
-import {Link} from "react-router-dom";
 import {useState} from "react";
+import {isOwner} from "../../api/util";
 
 export const UserCard = ({userDTO}) => {
 
