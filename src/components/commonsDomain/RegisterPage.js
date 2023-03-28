@@ -31,7 +31,11 @@ export const RegisterPage = (props) => {
         let data = Object.fromEntries(formData);
 
         if (password !== confirmPassword) return alert('Passwords must match!')
-        await register(data);
+        let r = await register(data);
+        if (!!r) {
+            setErrors(Object.values(r));
+            return;
+        }
 
         registerFormResetHandler();
         props.history.push('/users/login');
