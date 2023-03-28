@@ -8,7 +8,10 @@ let endpoints = {
 }
 
 export async function register(userdata) {
-    await post(endpoints.register, userdata);
+    let response = await post(endpoints.register, userdata);
+    if (response.status === 400) {
+        return await(await response).json();
+    }
 }
 
 export async function login(userdata) {

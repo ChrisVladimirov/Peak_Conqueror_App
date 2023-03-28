@@ -24,9 +24,9 @@ async function api(method, url, payload) {
             return response;
         }
 
-        /*if (response.status === 400) {
+        if (response.status === 400) {
             return response;
-        }*/
+        }
 
         if (response.status === 401) {
             return response;
