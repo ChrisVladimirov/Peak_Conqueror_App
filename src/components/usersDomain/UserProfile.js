@@ -1,4 +1,4 @@
-import {editThoughts} from "../../services/usersService.js";
+import {editThoughts, getParticularUser} from "../../services/usersService.js";
 import {useEffect, useState} from "react";
 import {getUserData} from "../../api/util.js";
 import {PrettyFooter} from "../commonsDomain/PrettyFooter";
@@ -8,7 +8,12 @@ export const UserProfile = (props) => {
 
     const user = getUserData();
 
-    const [thoughts, setThoughts] = useState(user.thoughts);
+    const [thoughts, setThoughts] = useState(user.thoughts || '');
+    const [errors, setErrors] = useState('');
+
+    useEffect(() => {
+        getParticularUser(user.username).then(r => setThoughts(r.thoughts));
+    }, [])
 
     useEffect(() => {
         let currentStyle = document.body.style;
@@ -23,8 +28,12 @@ export const UserProfile = (props) => {
         e.preventDefault();
         let newThoughts = e.target.querySelector('input').value;
         setThoughts(newThoughts);
-        await editThoughts(newThoughts);
-        setThoughts('');
+        let response = await editThoughts(user.id, newThoughts);
+        if (response) {
+            setErrors("Invalid updated thoughts!");
+            return;
+        }
+        setErrors('');
     }
 
     function inputChangeHandler(e) {
@@ -37,7 +46,7 @@ export const UserProfile = (props) => {
         <>
             <NavbarTemplate/>
             <section className="float-end"
-                     style={{marginTop: '130px', marginBottom: '140px', marginRight: '50px'}}>
+                     style={{marginTop: '6em', marginBottom: '4em', marginRight: '3em'}}>
                 <div className="card d-flex justify-content-center" style={{width: '18rem'}}>
                     <div id="profileImage-me" className="card-img-top mx-auto">
                         {user.firstName.charAt(0)} {user.lastName.charAt(0)}
@@ -57,6 +66,7 @@ export const UserProfile = (props) => {
                             <label htmlFor="thoughts-input">Share something that inspires!</label>
                             <input className="form-control" onChange={inputChangeHandler} value={thoughts}
                                    type="text" id="thoughts-input"/>
+                            {!!errors && errors !== '' ? <span className="text-white bg-danger">{errors}</span> : null}
                             <button className="btn btn-dark my-2 my-sm-0">Confirm Changes</button>
                         </form>
                     </div>

@@ -1,7 +1,6 @@
 import {Button} from "react-bootstrap";
 import styles from "./PrettyFooter.module.css";
 import {Link} from "react-router-dom";
-import {NavbarTemplate} from "./NavbarTemplate";
 
 export const PrettyFooter = (props) => {
     return (
