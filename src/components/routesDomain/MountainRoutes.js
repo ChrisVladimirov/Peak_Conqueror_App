@@ -2,6 +2,8 @@ import {getAllRoutes} from "../../services/routeService.js";
 import {useEffect, useState, Suspense} from "react";
 import {MountainRouteCard} from "./MountainRouteCard";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import {Footer} from "../commonsDomain/Footer";
+import {useBackground} from "../../hooks/useBackground";
 
 export const MountainRoutes = (props) => {
 
@@ -13,14 +15,7 @@ export const MountainRoutes = (props) => {
             });
     }, []);
 
-    useEffect(() => {
-        const currentStyles = document.body.style;
-        currentStyles.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg")`;
-        currentStyles.backgroundPosition = `center center`;
-        currentStyles.backgroundRepeat = `no-repeat`;
-        currentStyles.backgroundAttachment = `fixed`;
-        currentStyles.backgroundSize = `cover`;
-    }, [])
+    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg")
 
     return (
         <div>
@@ -38,6 +33,7 @@ export const MountainRoutes = (props) => {
                     }
                 </Suspense>
             </section>
+            <Footer/>
         </div>
     );
 }

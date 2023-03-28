@@ -8,9 +8,11 @@ export const AddRoutePage = (props) => {
     const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
-        const [_tLevels, _pictures] = Promise.all([getAllToughnessLevels(), getAllPictures()]);
-        setLevels(_tLevels);
-        setPictures(_pictures);
+        (async () => {
+            const [_tLevels, _pictures] = await Promise.all([getAllToughnessLevels(), getAllPictures()]);
+            setLevels(Object.values(_tLevels));//fixme: Object.entries() may be useful here
+            setPictures(_pictures);
+        })()
     }, [])
 
     return (
@@ -36,16 +38,16 @@ export const AddRoutePage = (props) => {
                 <div className="form-group">
                     <label>*Difficulty</label>
                     <select required={true}>
-                        {levels.map(l => <option defaultValue={l}>{l}</option>)}
+                        {levels.map(l => <option key={l.id} defaultValue={l}>{l}</option>)}
                     </select>
                 </div>
                 <div className="form-group">
                     <label>*Pictures</label>
                     <select required={true}>
-                        {pictures.map(p => <option defaultValue={p.url}>{p.title}</option>)}
+                        {pictures.map(p => <option key={p.id} defaultValue={p.url}>{p.title}</option>)}
                     </select>
                 </div>
             </form>
         </>
     );
-}//todo
+}

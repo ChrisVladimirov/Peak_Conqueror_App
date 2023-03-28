@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {register} from "../../api/authService.js";
+import {useBackground} from "../../hooks/useBackground";
 
 export const RegisterPage = (props) => {
 
@@ -11,14 +12,7 @@ export const RegisterPage = (props) => {
 
     const [errors, setErrors] = useState(null);
 
-    useEffect(() => {
-        const currentStyles = document.body.style;
-        currentStyles.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672598736/peak-climber-pictures/chakar-voivoda_fej8td.jpg")`;
-        currentStyles.backgroundPosition = `center center`;
-        currentStyles.backgroundRepeat = `no-repeat`;
-        currentStyles.backgroundAttachment = `fixed`;
-        currentStyles.backgroundSize = `cover`;
-    }, []);
+    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672598736/peak-climber-pictures/chakar-voivoda_fej8td.jpg")
 
     function registerFormResetHandler() {
         setUser({firstName: '', lastName: '', username: '', email: '', password: '', confirmPassword: ''})

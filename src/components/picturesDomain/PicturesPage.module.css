@@ -1,0 +1,16 @@
+.allPictures {
+    margin: 100px;
+}
+
+.allPictures > h2 {
+    padding-top: 35px;
+}
+
+/*.allPicturesHeading {
+    padding-top: 35px;
+}*/
+
+.pictureCard {
+    width: 18rem;
+    height: 25rem;
+}

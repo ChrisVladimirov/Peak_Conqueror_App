@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getParticularRoute, likeARoute} from "../../services/routeService.js";
+import {getParticularRoute} from "../../services/routeService.js";
 import {Footer} from "../commonsDomain/Footer";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {RoutePhotosCarousel} from "./RoutePhotosCarousel";
@@ -10,8 +10,6 @@ export const RouteDetails = (props) => {
     let routeId = props.match.params.id;
 
     const [currentRoute, setCurrentRoute] = useState(null);
-    const [likes, setLikes] = useState(0);
-    const [isItLiked, setIsItLiked] = useState(false);
     const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
@@ -25,12 +23,6 @@ export const RouteDetails = (props) => {
     useEffect(() => {
         setPictures(currentRoute?.pictures)
     }, [currentRoute])
-
-    async function likeClickHandler(e) {
-        e.preventDefault();
-        await likeARoute(routeId);
-        setIsItLiked(true);
-    }
 
     return (
         <>
@@ -103,16 +95,6 @@ export const RouteDetails = (props) => {
                             <h3>About the Route</h3>
                             <p className={styles.itineraryStyle}>{currentRoute.itinerary}</p>
                         </section>
-                        {/*<aside>
-                            {!isItLiked
-                                ? <a className="btn btn-dark" onClick={likeClickHandler}>Like</a>
-                                : null
-                            }
-                            {isAdmin()
-                                ? <div>{likes}</div>
-                                : null
-                            }
-                        </aside>*/}
                         <section className={styles.routeGallery}>
                             <RoutePhotosCarousel pictures={pictures}/>
                         </section>

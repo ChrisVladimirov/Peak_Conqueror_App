@@ -49,16 +49,15 @@ export const MountainRouteCard = (props) => {
                         <i className={`fa-regular fa-thumbs-up fa-2xl 
                     ${isLiked === true ? styles.likedRoute : styles.notLikedRoute}`} onClick={likeClickHandler}>
                         </i>
-
+                        {isAdmin() ?
+                            <>
+                                <p>{routeDTO.likes} likes</p>
+                                <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>
+                            </>
+                            : null
+                        }
                     </>
                     : null}
-                {isAdmin() ?
-                    <>
-                        <p>{routeDTO.likes} likes</p>
-                        <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>
-                    </>
-                    : null
-                }
             </div>
         </div>
     );

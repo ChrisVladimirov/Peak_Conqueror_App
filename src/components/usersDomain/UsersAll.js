@@ -6,6 +6,7 @@ import {Footer} from "../commonsDomain/Footer";
 import {Header} from "../commonsDomain/Header";
 import styles from "./UserCard.module.css";
 import {getUserData} from "../../api/util.js";
+import {useBackground} from "../../hooks/useBackground";
 
 export const UsersAll = (props) => {
 
@@ -18,14 +19,7 @@ export const UsersAll = (props) => {
         }, 1000)
     }, [])
 
-    useEffect(() => {
-        const currentStyle = document.body.style;
-        currentStyle.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1677864431/Ferdinandovo_ezero.jpg")`;
-        currentStyle.backgroundPosition = 'center center';
-        currentStyle.backgroundRepeat = 'no-repeat';
-        currentStyle.backgroundAttachment = 'fixed';
-        currentStyle.backgroundSize = 'cover';
-    }, [])
+    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1677864431/Ferdinandovo_ezero.jpg")
 
     return (
         <>

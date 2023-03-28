@@ -2,6 +2,7 @@ import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "rea
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {login} from "../../api/authService.js";
+import {useBackground} from "../../hooks/useBackground";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};
@@ -9,14 +10,7 @@ export const LoginPage = (props) => {
     const [user, setUser] = useState(initialUser);
     const {username, password} = user;
 
-    useEffect(() => {
-        const currentStyle = document.body.style;
-        currentStyle.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599088/peak-climber-pictures/lake_kzbf4l.jpg")`;
-        currentStyle.backgroundPosition = "center center";
-        currentStyle.backgroundRepeat = "no-repeat";
-        currentStyle.backgroundAttachment = "fixed";
-        currentStyle.backgroundSize = "cover";
-    }, []);
+    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599088/peak-climber-pictures/lake_kzbf4l.jpg")
 
     async function loginSubmitFormHandler(e) {
         e.preventDefault();
