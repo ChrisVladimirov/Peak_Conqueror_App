@@ -1,0 +1,14 @@
+.mainForm {
+    background-image: linear-gradient(to bottom right, rgba(255, 250, 211, 0.8),
+    rgba(255, 249, 218, 0.8));
+    padding: 1em 2em;
+    border-radius: 1.5em;
+    margin-bottom: 5em;
+}
+
+.formHeader {
+    background-position: top;
+    margin-top: 125px;
+    margin-bottom: 80px;
+    position: center;
+}

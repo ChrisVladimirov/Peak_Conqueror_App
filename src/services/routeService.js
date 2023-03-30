@@ -29,8 +29,11 @@ export async function getAllToughnessLevels() {
     return await get(endpoints.getToughnessLevels);
 }
 
-export async function createARoute(routeData) {
-    await post(endpoints.createRoute, routeData);
+export async function createRoute(routeData) {
+    let response = await post(endpoints.createRoute, routeData);
+    if (response.status === 400) {
+        return await (await response).json();
+    }
 }
 
 export async function likeARoute(routeId) {

@@ -25,6 +25,5 @@ export async function login(userdata) {
 }
 
 export function logout() {
-    //post(endpoints.logout);
     clearUserData();
 }
