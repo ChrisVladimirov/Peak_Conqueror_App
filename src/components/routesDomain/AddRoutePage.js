@@ -28,7 +28,6 @@ export const AddRoutePage = (props) => {
         let formData = new FormData(form);
         let data = Object.fromEntries(formData);
         data['pictureUrls'] = pictureUrls;
-        console.log(data)
         let r = await createRoute(data);
         if (!!r) {
             setErrors(Object.values(r));
@@ -37,11 +36,6 @@ export const AddRoutePage = (props) => {
         setErrors(null)
         props.history.push("/routes/all")
     }
-
-    /*function changeHandler(e) {
-        let value = e.target;
-        setPictureUrls([Array.from(pictureUrls).push(value)]);
-    }*/
 
     return (
         <section id="routeAddition">
@@ -110,8 +104,6 @@ export const AddRoutePage = (props) => {
                                             const options = [...e.target.selectedOptions];
                                             const values = options.map(option => option.value);
                                             setPictureUrls(values);
-                                            console.log(pictureUrls)
-                                            //console.log('Values are: ' + values)
                                         }}>
                                     {pictures.map(p => <option key={p.id}
                                                                value={p.url}>{p.title}</option>)}

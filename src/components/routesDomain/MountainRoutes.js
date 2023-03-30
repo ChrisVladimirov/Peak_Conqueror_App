@@ -3,7 +3,8 @@ import {useEffect, useState, Suspense} from "react";
 import {MountainRouteCard} from "./MountainRouteCard";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {Footer} from "../commonsDomain/Footer";
-import {useBackground} from "../../hooks/useBackground";
+import {useBackground} from "../../hooks/useBackground.js";
+import styles from "./MountainRoutes.module.css";
 
 export const MountainRoutes = (props) => {
 
@@ -20,12 +21,12 @@ export const MountainRoutes = (props) => {
     return (
         <div>
             <NavbarTemplate/>
-            <div className="headingTeaser mt-5">
+            <div className={`${styles.headingTeaser} mt-5`}>
                 <h4>Have you been there?</h4>
                 <h5>...if not, what are you waiting for!?</h5>
             </div>
 
-            <section className="d-flex justify-content-center align-self-center">
+            <section className="d-flex justify-content-center align-self-center flex-wrap">
                 <Suspense fallback={<p>Loading...</p>}>
                     {routes.length > 0 ?
                         routes.map(route => <MountainRouteCard key={route.id} routeDTO={route}/>)
