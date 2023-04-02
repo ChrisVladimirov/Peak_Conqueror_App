@@ -1,10 +1,14 @@
-import {editPicture} from "../../services/pictureService.js";
-import {useState} from "react";
+import {editPicture, getSinglePicture} from "../../services/pictureService.js";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import styles from "./EditPicture.module.css";
+import {Footer} from "../commonsDomain/Footer";
 
 export const EditPicturePage = (props) => {
-    const pictureId = props.match.params.id;
+    const {pictureId} = useParams();
 
-    const [picture, setPicture] = useState({title: '', url: ''});
+    const [picture, setPicture] = useState({});
     const {title, url} = picture;
 
     function inputChangeHandler(e) {
@@ -22,32 +26,44 @@ export const EditPicturePage = (props) => {
         props.history.push("/pictures/all");
     }
 
+    useEffect(() => {
+        getSinglePicture(pictureId).then(r => setPicture(r))
+    }, [])
+
     return (
         <>
-            <form onSubmit={editPictureHandler}>
-                <div className="row">
-                    <div className="form-group col-md-6 mb-3">
-                        <label htmlFor="pictureTitle" className="text-white">Title</label>
-                        <input id="pictureTitle" name="pictureTitle" onChange={inputChangeHandler}
-                               value={title}
-                               className="form-control" type="text" required/>
-                    </div>
-                    <div className="form-group col-md-6 mb-3">
-                        <label htmlFor="pictureUrl" className="text-white">Url</label>
-                        <input id="pictureUrl" name="pictureUrl" onChange={inputChangeHandler}
-                               value={url}
-                               className="form-control" type="text" required/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col col-md-4">
-                        <div className="button-holder d-flex">
-                            <input type="submit"
-                                   className="btn btn-info btn-lg" value="Edit Picture"/>
+            <NavbarTemplate/>
+            <section className="container">
+                <div className="mx-auto d-flex flex-column justify-content-center col-lg-8">
+                    <h2 className={styles.editPictureHeader}>Edit Picture</h2>
+                    <form onSubmit={editPictureHandler}>
+                        <div className="row">
+                            <div className="form-group col-md-6 mb-3">
+                                <label htmlFor="pictureTitle" className="text-white">Title</label>
+                                <input id="pictureTitle" name="title" onChange={inputChangeHandler}
+                                       value={title}
+                                       className="form-control" type="text" required/>
+                            </div>
+                            <div className="form-group col-md-6 mb-3">
+                                <label htmlFor="pictureUrl" className="text-white">Url</label>
+                                <input id="pictureUrl" name="url" onChange={inputChangeHandler}
+                                       value={url}
+                                       className="form-control" type="text" required/>
+                            </div>
                         </div>
-                    </div>
+                        <div className="row">
+                            <div className="col col-md-4">
+                                <div className="button-holder d-flex">
+                                    <input type="submit"
+                                           className="btn btn-info btn-lg" value="Edit Picture"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </section>
+            <img src={url} alt={title} className={`${styles.editPictureContainerImg}`}/>
+            <Footer/>
         </>
     );
 }
