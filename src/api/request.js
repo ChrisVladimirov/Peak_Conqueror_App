@@ -32,6 +32,10 @@ async function api(method, url, payload) {
             return response;
         }
 
+        if (response.status === 409) {
+            alert('The entry already exists!')
+        }
+
         if (!response.ok) {
             let error = await response.json();
             //alert(error.message);
