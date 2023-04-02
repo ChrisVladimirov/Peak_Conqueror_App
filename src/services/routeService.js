@@ -9,7 +9,7 @@ const endpoints = {
     'likeARoute': (userId, routeId) => `/routes/${routeId}/like?user=${userId}`,
     'removeLike': (userId, routeId) => `/routes/${routeId}/removeLike?user=${userId}`,
     'createRoute': '/routes/create',
-    'editRoute': '/routes/edit',
+    'editRoute': (routeId) => `/routes/${routeId}/edit`,
     'deleteRoute': (routeId) => `/routes/delete?routeId=${routeId}`
 }
 
@@ -48,8 +48,11 @@ export async function removeLike(routeId) {
     await del(endpoints.removeLike(userId, routeId));
 }
 
-export async function editRoute(newRouteData) {
-    await put(endpoints.editRoute, newRouteData);
+export async function editRoute(routeId, newRouteData) {
+    let response = await put(endpoints.editRoute(routeId), newRouteData);
+    if (response.status === 400) {
+        return await (await response).json();
+    }
 }
 
 export async function deleteRoute(routeId) {

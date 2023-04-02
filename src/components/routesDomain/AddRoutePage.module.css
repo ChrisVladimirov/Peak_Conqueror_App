@@ -12,3 +12,8 @@
     margin-bottom: 80px;
     position: center;
 }
+
+h5 {
+    margin-top: 0.5em;
+    color: #282c34;
+}

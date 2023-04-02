@@ -3,6 +3,8 @@ import {createRoute, getAllToughnessLevels} from "../../services/routeService.js
 import {getAllPictures} from "../../services/pictureService.js";
 import styles from "./AddRoutePage.module.css";
 import {useBackground} from "../../hooks/useBackground.js";
+import {Footer} from "../commonsDomain/Footer";
+import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 
 export const AddRoutePage = (props) => {
 
@@ -20,9 +22,9 @@ export const AddRoutePage = (props) => {
 
     useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599122/peak-climber-pictures/Babreka_rxzixu.jpg")
 
-    const [pictureUrls, setPictureUrls] = useState(['','']);
+    const [pictureUrls, setPictureUrls] = useState(['', '']);
 
-    async function submitPictureHandler(e) {
+    async function submitCreateRouteHandler(e) {
         e.preventDefault();
         let form = e.target;
         let formData = new FormData(form);
@@ -38,98 +40,102 @@ export const AddRoutePage = (props) => {
     }
 
     return (
-        <section id="routeAddition">
-            <div className="section-center">
-                <div className="container">
+        <>
+            <NavbarTemplate/>
+            <section id="routeAddition">
+                <div className="section-center">
+                    <div className="container">
 
-                    <div className={`${styles.formHeader}`}>
-                        <h2 className="text-center text-white">Add a new Route</h2>
-                    </div>
+                        <div className={`${styles.formHeader}`}>
+                            <h2 className="text-center text-white">Add a new Route</h2>
+                        </div>
 
-                    <form onSubmit={submitPictureHandler} className={`${styles.mainForm} 
+                        <form onSubmit={submitCreateRouteHandler} className={`${styles.mainForm} 
                     mx-auto col-sm-4 d-flex flex-column justify-content-center`}
-                          method="POST">
+                              method="POST">
 
-                        <div className="row">
-                            <div className="col-md-6 mb-3">
-                                <div className="form-group">
-                                    <label htmlFor="routeName">Name</label>
-                                    <input id="routeName" name="name"
-                                           type="text" className="form-control"
-                                           required minLength="7" defaultValue={''}
-                                    />
-                                </div>
-                                <label htmlFor="routeDuration">Duration <em>(in hours)</em> </label>
-                                <input id="routeDuration" name="duration"
-                                       className="form-control" type={"number"}
-                                       min={0.5}
-                                       step={0.5} defaultValue={0.5}/>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <div className="form-group">
+                                        <label htmlFor="routeName">Name</label>
+                                        <input id="routeName" name="name"
+                                               type="text" className="form-control"
+                                               required minLength="7" defaultValue={''}
+                                        />
+                                    </div>
+                                    <label htmlFor="routeDuration">Duration <em>(in hours)</em> </label>
+                                    <input id="routeDuration" name="duration"
+                                           className="form-control" type={"number"}
+                                           min={0.5}
+                                           step={0.5} defaultValue={0.5}/>
 
-                                <label htmlFor="routeLevel">Difficulty Level</label>
-                                <select required={true} name="toughness"
-                                        defaultValue={'EASY'}>
-                                    {levels.map(l => <option key={l}>{l}</option>)}
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div className="form-group">
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="routeNotes">Description</label>
-                                <textarea id="routeNotes" name="itinerary"
-                                          className="form-control"
-                                          required={true}
-                                          defaultValue={''}/>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <h5>
-                                Coordinates <em>(Type a file url)</em>
-                            </h5>
-                            <div className="col-md-6 mb-3">
-                                <input id="coordinatesUrl" className="form-control-file"
-                                       name="coordinatesUrl" type="url"
-                                       defaultValue={''}/>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="routeInitialImage">Pictures</label>
-                                <select name="pictureUrls" required={true} multiple={true}
-                                        value={pictureUrls}
-                                        onChange={e => {
-                                            const options = [...e.target.selectedOptions];
-                                            const values = options.map(option => option.value);
-                                            setPictureUrls(values);
-                                        }}>
-                                    {pictures.map(p => <option key={p.id}
-                                                               value={p.url}>{p.title}</option>)}
-                                </select>
-                            </div>
-                        </div>
-
-                        {!!errors ?
-                            <div>
-                                <ol>{errors.map(e =>
-                                    <li style={{listStyle: 'none', fontWeight: 'bold'}}
-                                        className="text-white bg-danger">{e}</li>)}</ol>
-                            </div>
-                            : null}
-
-                        <div className="row d-flex justify-content-between">
-                            <div className="col col-md-4">
-                                <div className="button-holder d-flex">
-                                    <input type="submit" className="btn btn-dark btn-lg"
-                                           value="Create"/>
+                                    <label htmlFor="routeLevel">Difficulty Level</label>
+                                    <select required={true} name="toughness"
+                                            defaultValue={'EASY'}>
+                                        {levels.map(l => <option key={l}>{l}</option>)}
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+
+
+                            <div className="form-group">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="routeNotes">Description</label>
+                                    <textarea id="routeNotes" name="itinerary"
+                                              className="form-control"
+                                              required={true}
+                                              defaultValue={''}/>
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <h5>
+                                    Coordinates <em>(Type a file url)</em>
+                                </h5>
+                                <div className="col-md-6 mb-3">
+                                    <input id="coordinatesUrl" className="form-control-file"
+                                           name="coordinatesUrl" type="url"
+                                           defaultValue={''}/>
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="routeInitialImage">Pictures</label>
+                                    <select name="pictureUrls" required={true} multiple={true}
+                                            value={pictureUrls}
+                                            onChange={e => {
+                                                const options = [...e.target.selectedOptions];
+                                                const values = options.map(option => option.value);
+                                                setPictureUrls(values);
+                                            }}>
+                                        {pictures.map(p => <option key={p.id}
+                                                                   value={p.url}>{p.title}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+
+                            {!!errors ?
+                                <div>
+                                    <ol>{errors.map(e =>
+                                        <li style={{listStyle: 'none', fontWeight: 'bold'}}
+                                            className="text-white bg-danger">{e}</li>)}</ol>
+                                </div>
+                                : null}
+
+                            <div className="row d-flex justify-content-between">
+                                <div className="col col-md-4">
+                                    <div className="button-holder d-flex">
+                                        <input type="submit" className="btn btn-dark btn-lg"
+                                               value="Create"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <Footer/>
+        </>
     );
 }

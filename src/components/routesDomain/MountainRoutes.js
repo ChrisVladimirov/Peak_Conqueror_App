@@ -11,9 +11,9 @@ export const MountainRoutes = (props) => {
     const [routes, setRoutes] = useState([]);
 
     useEffect(() => {
-            getAllRoutes().then(r => {
-                setRoutes(r);
-            });
+        getAllRoutes().then(r => {
+            setRoutes(r);
+        });
     }, []);
 
     useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg")
@@ -29,7 +29,8 @@ export const MountainRoutes = (props) => {
             <section className="d-flex justify-content-center align-self-center flex-wrap">
                 <Suspense fallback={<p>Loading...</p>}>
                     {routes.length > 0 ?
-                        routes.map(route => <MountainRouteCard key={route.id} routeDTO={route}/>)
+                        routes.map((route, index) => <MountainRouteCard key={route.id}
+                                                         routeIndex={index} setRoutes={setRoutes} routeDTO={route}/>)
                         : <p className="justify-content-center">Loading routes...</p>
                     }
                 </Suspense>

@@ -1,7 +1,16 @@
-.heading-teaser > h3, h4, h5 {
+.headingTeaser > h4, h5 {
     color: aliceblue;
     text-align: center;
-    margin-top: 2em;
+    margin-top: 6em;
+    font-family: "Noto Serif", serif;
+    font-size: xx-large;
+}
+
+.headingTeaser > h5 {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 2em;
 }
 
 .allRoutes-pane {

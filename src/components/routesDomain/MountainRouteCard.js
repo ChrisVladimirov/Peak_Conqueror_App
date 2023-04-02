@@ -21,11 +21,24 @@ export const MountainRouteCard = (props) => {
         }
     }
 
+    let setRoutes = props.setRoutes;
+    let routeIndex = props.routeIndex;
+
     async function deleteRouteHandler(e) {
         e.preventDefault();
         let confirmation = window.confirm("Are you sure you want to proceed\nwith the deletion\nof this route entry?");
         if (confirmation) {
             await deleteRoute(routeDTO.id);
+            setRoutes(oldRoutes => {
+                let newArr = [];
+                for (let i = 0; i < oldRoutes.length; i++) {
+                    let currentRoute = oldRoutes[i];
+                    if (i !== routeIndex) {
+                        newArr.push(currentRoute)
+                    }
+                }
+                return newArr;
+            });
         }
     }
 
@@ -52,6 +65,8 @@ export const MountainRouteCard = (props) => {
                         {isAdmin() ?
                             <>
                                 <p>{routeDTO.likes} likes</p>
+                                <Link className="btn btn-primary"
+                                      to={`/routes/${routeDTO.id}/edit`}>Edit</Link>
                                 <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>
                             </>
                             : null
