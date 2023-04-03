@@ -14,33 +14,35 @@ import {AddRoutePage} from "./components/routesDomain/AddRoutePage";
 import {EditRoutePage} from "./components/routesDomain/EditRoutePage";
 import {PicturesPage} from "./components/picturesDomain/PicturesPage";
 import {CreatePicturePage} from "./components/picturesDomain/CreatePicturePage";
+import {EditPicturePage} from "./components/picturesDomain/EditPicturePage";
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
                 <Switch>
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/routes/all" component={MountainRoutes}/>
-                        <Route path="/routes/create" component={AddRoutePage}/>
-                        <Route path="/routes/:routeId/edit" component={EditRoutePage}/>
-                        <Route path="/routes/:id" component={RouteDetails}/>
-                        <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
-                        <Route path="/users/register" component={RegisterPage}/>
-                        <Route path="/users/login" component={LoginPage}/>
-                        <Route path="/pictures/all" component={PicturesPage}/>
-                        <Route path="/pictures/create" component={CreatePicturePage}/>
-                        {
-                            !!getUserData()
-                                ? <>
-                                    <Route path="/users/me" component={UserProfile}/>
-                                    <Route path="/users/all" component={UsersAll}/>
-                                </>
-                                : <Redirect to="/users/login"/>
-                        }
-                        <Route path="/users/logout">
-                            <Redirect to="/"/>
-                        </Route>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/routes/all" component={MountainRoutes}/>
+                    <Route path="/routes/create" component={AddRoutePage}/>
+                    <Route path="/routes/:routeId/edit" component={EditRoutePage}/>
+                    <Route path="/routes/:id" component={RouteDetails}/>
+                    <Route path="/weather/:mountain/:mountain_location/:numberOfDays" component={Forecast}/>
+                    <Route path="/users/register" component={RegisterPage}/>
+                    <Route path="/users/login" component={LoginPage}/>
+                    <Route path="/pictures/all" exact component={PicturesPage}/>
+                    <Route path="/pictures/create" exact component={CreatePicturePage}/>
+                    <Route path="/pictures/:pictureId/edit" component={EditPicturePage}/>
+                    {
+                        !!getUserData()
+                            ? <>
+                                <Route path="/users/me" component={UserProfile}/>
+                                <Route path="/users/all" component={UsersAll}/>
+                            </>
+                            : <Redirect to="/users/login"/>
+                    }
+                    <Route path="/users/logout">
+                        <Redirect to="/"/>
+                    </Route>
                 </Switch>
             </BrowserRouter>
         </div>

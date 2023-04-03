@@ -17,7 +17,10 @@ export async function getSinglePicture(pictureId) {
 }
 
 export async function createPicture(pictureData) {
-    await post(endpoints.createPicture, pictureData);
+    let response = await post(endpoints.createPicture, pictureData);
+    if (response.status === 400) {
+        return await(await response).json();
+    }
 }
 
 export async function editPicture(pictureId, editedPictureData) {
