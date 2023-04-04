@@ -3,22 +3,26 @@ import {useState} from "react";
 import styles from "./MountainRouteCard.module.css";
 import {deleteRoute, likeARoute, removeLike} from "../../services/routeService.js";
 import {getUserData, isAdmin} from "../../api/util.js";
+import {useLikesContext} from "../../contexts/LikesContext";
 
 export const MountainRouteCard = (props) => {
 
     const routeDTO = props.routeDTO;
+    let {likes, likesCount, onLike, onRemoveLike} = useLikesContext();
 
     const [isLiked, setIsLiked] = useState(false);
 
     async function likeClickHandler(e) {
         let likeIcon = e.target;
         likeIcon.classList.add('fa-shake')
-        setIsLiked(!isLiked);
-        if (isLiked) {
-            await likeARoute(routeDTO.id);
+        if (isLiked === false) {
+            //await likeARoute(routeDTO.id);
+            onLike();
         } else {
-            await removeLike(routeDTO.id);
+            //await removeLike(routeDTO.id);
+            onRemoveLike();
         }
+        setIsLiked(!isLiked);
     }
 
     let setRoutes = props.setRoutes;
@@ -62,9 +66,9 @@ export const MountainRouteCard = (props) => {
                         <i className={`fa-regular fa-thumbs-up fa-2xl 
                     ${isLiked === true ? styles.likedRoute : styles.notLikedRoute}`} onClick={likeClickHandler}>
                         </i>
+                        <p>{likes.length} likes</p>
                         {isAdmin() ?
                             <>
-                                <p>{routeDTO.likes} likes</p>
                                 <Link className="btn btn-primary"
                                       to={`/routes/${routeDTO.id}/edit`}>Edit</Link>
                                 <a className="btn btn-dark" onClick={deleteRouteHandler}>Delete route</a>

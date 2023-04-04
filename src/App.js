@@ -32,15 +32,17 @@ function App() {
                     <Route path="/pictures/all" exact component={PicturesPage}/>
                     <Route path="/pictures/create" exact component={CreatePicturePage}/>
                     <Route path="/pictures/:pictureId/edit" component={EditPicturePage}/>
-                    {
-                        !!getUserData()
-                            ? <>
-                                <Route path="/users/me" component={UserProfile}/>
-                                <Route path="/users/all" component={UsersAll}/>
-                            </>
-                            : <Redirect to="/users/login"/>
-                    }
                     <Route path="/users/logout">
+                        <Redirect to="/"/>
+                    </Route>
+                    {!!getUserData()
+                        ? <>
+                            <Route path="/users/me" component={UserProfile}/>
+                            <Route path="/users/all" component={UsersAll}/>
+                        </>
+                        : <Redirect to="/users/login"/>
+                    }
+                    <Route path="*">
                         <Redirect to="/"/>
                     </Route>
                 </Switch>

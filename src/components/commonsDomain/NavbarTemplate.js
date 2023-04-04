@@ -13,6 +13,7 @@ export const NavbarTemplate = (props) => {
         e.preventDefault();
         logout();
         setUser(null);
+        window.location = "/users/logout";//fixme: useNavigate()
     }
 
     return (
@@ -32,16 +33,22 @@ export const NavbarTemplate = (props) => {
                     <Nav className="mr-auto col-9 justify-content-evenly">
 
                         {!user ? <>
-                                <Nav.Link className="guest" href="/users/login">Login</Nav.Link>
+                                <Nav.Link>
+                                    <Link to={"/users/login"}>Login</Link>
+                                </Nav.Link>
                             </>
-                            : <Nav.Link href="/users/me">Me</Nav.Link>
+                            : <Nav.Link>
+                                <Link to={"/users/me"}>Me</Link>
+                            </Nav.Link>
                         }
 
                         <Nav.Link href="/users/all">Users</Nav.Link>
                         <Nav.Link>
                             <Link
                                 mountain_location="Rila_monastery"
-                                to="/weather/Rila/Rila_monastery/5">Forecast</Link>
+                                to="/weather/Rila/Rila_monastery/5">
+                                Forecast
+                            </Link>
                         </Nav.Link>
                         {!!user ?
                             (isAdmin() || isOwner() ?
@@ -62,9 +69,13 @@ export const NavbarTemplate = (props) => {
                                             </NavDropdown.Item>
                                         </NavDropdown>
                                     </>
-                                    : <Nav.Link href="/routes/all">Routes</Nav.Link>
+                                    : <Nav.Link href="#">
+                                        <Link to={"/routes/all"}>Routes</Link>
+                                    </Nav.Link>
                             )
-                            : <Nav.Link href="/routes/all">Routes</Nav.Link>
+                            : <Nav.Link href="#">
+                                <Link to={"/routes/all"}>Routes</Link>
+                            </Nav.Link>
                         }
 
                         {!!user
