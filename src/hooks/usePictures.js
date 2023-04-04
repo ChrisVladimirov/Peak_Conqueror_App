@@ -17,5 +17,5 @@ export const usePictures = (props) => {
         gettingThePictures();
     }, []);
 
-    return pictures;
+    return [pictures, setPictures];
 }

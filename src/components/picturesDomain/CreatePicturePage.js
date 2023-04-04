@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {createPicture} from "../../services/pictureService.js";
-import {usePictures} from "../../hooks/usePictures";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {Footer} from "../commonsDomain/Footer";
 import {useBackground} from "../../hooks/useBackground";
