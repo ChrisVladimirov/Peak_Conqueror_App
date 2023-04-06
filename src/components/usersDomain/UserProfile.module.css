@@ -1,4 +1,4 @@
-#profileImage-me {
+.profileImageMe {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -8,4 +8,14 @@
     text-align: center;
     line-height: 150px;
     margin: 20px 0;
+}
+
+.userProfileSection {
+    margin-top: 10em;
+    margin-bottom: 4em;
+    margin-right: 3em;
+}
+
+.profileCard {
+    width: 18rem;
 }

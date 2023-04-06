@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {getUserData} from "../../api/util.js";
 import {PrettyFooter} from "../commonsDomain/PrettyFooter";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import {useBackground} from "../../hooks/useBackground";
+import styles from "./UserProfile.module.css";
 
 export const UserProfile = (props) => {
 
@@ -15,14 +17,7 @@ export const UserProfile = (props) => {
         getParticularUser(user.username).then(r => setThoughts(r.thoughts));
     }, [])
 
-    useEffect(() => {
-        let currentStyle = document.body.style;
-        currentStyle.backgroundImage = `url("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599535/peak-climber-pictures/weather-images/firy-dark-clouds_wcmr1u.jpg")`;
-        currentStyle.backgroundPosition = 'center center';
-        currentStyle.backgroundRepeat = 'no-repeat';
-        currentStyle.backgroundAttachment = 'fixed';
-        currentStyle.backgroundSize = 'cover';
-    }, []);
+    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599535/peak-climber-pictures/weather-images/firy-dark-clouds_wcmr1u.jpg")
 
     async function editThoughtsFormSubmitHandler(e) {
         e.preventDefault();
@@ -45,10 +40,9 @@ export const UserProfile = (props) => {
     return (
         <>
             <NavbarTemplate/>
-            <section className="float-end"
-                     style={{marginTop: '6em', marginBottom: '4em', marginRight: '3em'}}>
-                <div className="card d-flex justify-content-center" style={{width: '18rem'}}>
-                    <div id="profileImage-me" className="card-img-top mx-auto">
+            <section className={`${styles.userProfileSection} float-end`}>
+                <div className={`card d-flex justify-content-center ${styles.profileCard}`}>
+                    <div className={`${styles.profileImageMe} card-img-top mx-auto`}>
                         {user.firstName.charAt(0)} {user.lastName.charAt(0)}
                     </div>
                     <div className="card-body">
