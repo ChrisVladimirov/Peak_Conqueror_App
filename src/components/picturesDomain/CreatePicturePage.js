@@ -2,7 +2,8 @@ import {useState} from "react";
 import {createPicture} from "../../services/pictureService.js";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {Footer} from "../commonsDomain/Footer";
-import {useBackground} from "../../hooks/useBackground";
+import {useBackground} from "../../hooks/useBackground.js";
+import {pictureUrls} from "../../api/constants.js";
 
 export const CreatePicturePage = (props) => {
 
@@ -11,7 +12,7 @@ export const CreatePicturePage = (props) => {
 
     const [errors, setErrors] = useState(null);
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672598737/peak-climber-pictures/by-the-fire_gpbzvq.jpg")
+    useBackground(pictureUrls.BY_THE_FIRE)
 
     function inputChangeHandler(e) {
         let {name, value} = e.target;

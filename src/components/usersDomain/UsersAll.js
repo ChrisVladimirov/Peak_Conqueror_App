@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import {UserCard} from "./UserCard";
 import {getAllUsers} from "../../services/usersService.js";
-import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {Footer} from "../commonsDomain/Footer";
 import {Header} from "../commonsDomain/Header";
 import styles from "./UserCard.module.css";
 import {getUserData} from "../../api/util.js";
-import {useBackground} from "../../hooks/useBackground";
+import {useBackground} from "../../hooks/useBackground.js";
+import {pictureUrls} from "../../api/constants.js";
 
 export const UsersAll = (props) => {
 
@@ -19,7 +19,7 @@ export const UsersAll = (props) => {
         }, 1000)
     }, [])
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1677864431/Ferdinandovo_ezero.jpg")
+    useBackground(pictureUrls.FERDINANDOVO_EZERO)
 
     return (
         <>

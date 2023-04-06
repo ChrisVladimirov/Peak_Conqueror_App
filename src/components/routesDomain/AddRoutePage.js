@@ -5,6 +5,7 @@ import styles from "./AddRoutePage.module.css";
 import {useBackground} from "../../hooks/useBackground.js";
 import {Footer} from "../commonsDomain/Footer";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
+import {pictureUrls as urlConstants} from "../../api/constants.js";
 
 export const AddRoutePage = (props) => {
 
@@ -20,7 +21,7 @@ export const AddRoutePage = (props) => {
         })()
     }, [])
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599122/peak-climber-pictures/Babreka_rxzixu.jpg")
+    useBackground(urlConstants.BABREKA_LAKE)
 
     const [pictureUrls, setPictureUrls] = useState(['', '']);
 

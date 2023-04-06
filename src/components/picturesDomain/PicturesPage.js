@@ -2,16 +2,16 @@ import styles from "./PicturesPage.module.css";
 import {usePictures} from "../../hooks/usePictures.js";
 import {Suspense} from "react";
 import {PictureCard} from "./PictureCard";
-import {CreatePicturePage} from "./CreatePicturePage";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {Footer} from "../commonsDomain/Footer";
 import {useBackground} from "../../hooks/useBackground.js";
+import {pictureUrls} from "../../api/constants.js";
 
 export const PicturesPage = (props) => {
 
     const [pictures, setPictures] = usePictures([]);
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg")
+    useBackground(pictureUrls.PAZAR_DERE)
 
     return (
         <>
@@ -29,9 +29,6 @@ export const PicturesPage = (props) => {
                     </div>
                 </Suspense>
             </section>
-            {/*<div className={`d-flex justify-content-center ${styles.addPictureSection}`}>
-                <CreatePicturePage/>
-            </div>*/}
             <Footer/>
         </>
     );

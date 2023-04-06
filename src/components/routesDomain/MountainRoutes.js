@@ -6,6 +6,7 @@ import {Footer} from "../commonsDomain/Footer";
 import {useBackground} from "../../hooks/useBackground.js";
 import styles from "./MountainRoutes.module.css";
 import {LikesProvider} from "../../contexts/LikesContext";
+import {pictureUrls} from "../../api/constants.js";
 
 export const MountainRoutes = (props) => {
 
@@ -17,7 +18,7 @@ export const MountainRoutes = (props) => {
         });
     }, []);
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg")
+    useBackground(pictureUrls.PAZAR_DERE)
 
     return (
         <div>
@@ -31,8 +32,8 @@ export const MountainRoutes = (props) => {
                 <Suspense fallback={<p>Loading...</p>}>
                     {routes.length > 0 ?
                         routes.map((route, index) =>
-                            <LikesProvider routeId={route.id}>
-                                <MountainRouteCard key={route.id}
+                            <LikesProvider routeId={route.id} key={route.id}>
+                                <MountainRouteCard
                                                    routeIndex={index} setRoutes={setRoutes} routeDTO={route}/>
                             </LikesProvider>
                         )

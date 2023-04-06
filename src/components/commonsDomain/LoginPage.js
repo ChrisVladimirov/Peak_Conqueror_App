@@ -1,8 +1,9 @@
 import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {login} from "../../api/authService.js";
 import {useBackground} from "../../hooks/useBackground";
+import {pictureUrls} from "../../api/constants";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};
@@ -10,7 +11,7 @@ export const LoginPage = (props) => {
     const [user, setUser] = useState(initialUser);
     const {username, password} = user;
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599088/peak-climber-pictures/lake_kzbf4l.jpg")
+    useBackground(pictureUrls['LAKE'])
 
     async function loginSubmitFormHandler(e) {
         e.preventDefault();

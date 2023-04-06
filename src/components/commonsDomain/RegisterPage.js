@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {register} from "../../api/authService.js";
-import {useBackground} from "../../hooks/useBackground";
+import {useBackground} from "../../hooks/useBackground.js";
+import {pictureUrls} from "../../api/constants.js";
 
 export const RegisterPage = (props) => {
 
@@ -12,7 +13,7 @@ export const RegisterPage = (props) => {
 
     const [errors, setErrors] = useState(null);
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672598736/peak-climber-pictures/chakar-voivoda_fej8td.jpg")
+    useBackground(pictureUrls.CHAKAR_VOIVODA)
 
     function registerFormResetHandler() {
         setUser({firstName: '', lastName: '', username: '', email: '', password: '', confirmPassword: ''})
