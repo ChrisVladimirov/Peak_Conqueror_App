@@ -51,7 +51,7 @@ export const NavbarTemplate = (props) => {
                             </Link>
                         </Nav.Link>
                         {!!user ?
-                            (isAdmin() || isOwner() ?
+                            (isAdmin()?
                                     <>
                                         <NavDropdown title="Collections" id="basic-nav-dropdown">
                                             <NavDropdown.Item>
