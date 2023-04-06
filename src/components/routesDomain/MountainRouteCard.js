@@ -1,28 +1,26 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import styles from "./MountainRouteCard.module.css";
-import {deleteRoute, likeARoute, removeLike} from "../../services/routeService.js";
+import {deleteRoute} from "../../services/routeService.js";
 import {getUserData, isAdmin} from "../../api/util.js";
 import {useLikesContext} from "../../contexts/LikesContext";
 
 export const MountainRouteCard = (props) => {
 
     const routeDTO = props.routeDTO;
-    let {likes, likesCount, onLike, onRemoveLike} = useLikesContext();
+    let {likes, onLike, isLiked, onRemoveLike} = useLikesContext();
 
-    const [isLiked, setIsLiked] = useState(false);
+    //const [isLiked, setIsLiked] = useState(isLiked);
 
     async function likeClickHandler(e) {
         let likeIcon = e.target;
         likeIcon.classList.add('fa-shake')
         if (isLiked === false) {
-            //await likeARoute(routeDTO.id);
             onLike();
         } else {
-            //await removeLike(routeDTO.id);
             onRemoveLike();
         }
-        setIsLiked(!isLiked);
+        //setIsLiked(!isLiked);
     }
 
     let setRoutes = props.setRoutes;
