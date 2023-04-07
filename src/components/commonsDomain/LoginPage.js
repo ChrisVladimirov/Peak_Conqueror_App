@@ -2,8 +2,9 @@ import {Container, Form, FormCheck, FormControl, FormGroup, FormLabel} from "rea
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import {login} from "../../api/authService.js";
-import {useBackground} from "../../hooks/useBackground";
-import {pictureUrls} from "../../api/constants";
+import {useBackground} from "../../hooks/useBackground.js";
+import {pictureUrls} from "../../api/constants.js";
+import styles from "./LoginPage.module.css";
 
 export const LoginPage = (props) => {
     const initialUser = {username: '', password: ''};
@@ -39,10 +40,10 @@ export const LoginPage = (props) => {
     }
 
     return (
-        <div className="container justify-content-center" style={{margin: "0 auto", paddingTop: "125px"}}>
+        <div className={`${styles.loginPageContainer} container justify-content-center`}>
             <h2 className="text-center text-white">Login</h2>
             <Container className="justify-content-center flex-column col-md-8 mx-auto">
-                <Form action={"/users/login"} method="post" className="main-form"
+                <Form action={"/users/login"} method="post" className={styles.mainForm}
                       onSubmit={loginSubmitFormHandler}>
                     <FormGroup>
                         <FormLabel htmlFor="username-field"
@@ -70,7 +71,7 @@ export const LoginPage = (props) => {
                             </div>
                         </div>
                         <div className="col col-sm-3">
-                            <h6 className="signupForFree" style={{color: 'white'}}>Not a member?</h6>
+                            <h6 className={styles.signupForFree}>Not a member?</h6>
                             <Link to="/users/register">
                                 <p>Sign up for free</p>
                             </Link>

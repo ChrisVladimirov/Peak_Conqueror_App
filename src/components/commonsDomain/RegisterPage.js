@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Link} from "react-router-dom";
 import {register} from "../../api/authService.js";
 import {useBackground} from "../../hooks/useBackground.js";
 import {pictureUrls} from "../../api/constants.js";
+import styles from "./RegisterPage.module.css";
 
 export const RegisterPage = (props) => {
 
@@ -42,13 +43,13 @@ export const RegisterPage = (props) => {
     }
 
     return (
-        <section id="registration" style={{margin: "0 auto", paddingTop: "3em", paddingBottom: '4em'}}>
+        <section className={styles.mainRegistrationSection}>
             <div className="section-center">
                 <div className="container">
                     <div className="row">
                         <div className="registration-form">
 
-                            <div className="form-header" style={{backgroundPosition: 'top', marginBottom: '35px'}}>
+                            <div className={styles.registerFormHeader}>
                                 <h1>Register</h1>
                             </div>
 
@@ -128,14 +129,13 @@ export const RegisterPage = (props) => {
                                     }
 
                                     <div className="col col-sm-3">
-                                        <p style={{color: 'white'}}>
+                                        <p className={styles.promptToSignIn}>
                                             <b>Already a member?</b>
                                             <br/>
                                             <Link to="/users/login">Sign in</Link></p>
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>

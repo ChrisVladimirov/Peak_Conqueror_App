@@ -2,7 +2,8 @@ import {Link} from "react-router-dom";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import ImageControlledCarousel from "./ImageControlledCarousel";
-import {useBackground} from "../../hooks/useBackground";
+import {useBackground} from "../../hooks/useBackground.js";
+import styles from "./Home.module.css";
 
 export const Home = (props) => {
 
@@ -16,8 +17,8 @@ export const Home = (props) => {
                 <ImageControlledCarousel/>
             </section>
 
-            <section style={{margin: '50px'}} className="d-flex justify-content-around">
-                <div className="jumbotron" style={{marginRight: '50px'}}>
+            <section className={`d-flex justify-content-around ${styles.homeSection}`}>
+                <div className={`jumbotron ${styles.jumbotronHome}`}>
                     <h1 className="display-4">For the serious travellers!</h1>
                     <p className="lead">
                         View breathtaking amazing mountain routes.</p>

@@ -1,4 +1,4 @@
-.main-form {
+.mainForm {
     background-image: linear-gradient(to bottom right, rgba(70, 70, 70, 0.8), rgba(10, 10, 10, 0.8));
     padding: 10px 30px;
     border-radius: 20px;
@@ -8,6 +8,8 @@
     color: white;
 }
 
-p {
+.loginPageContainer {
     font-size: medium;
+    margin: 0 auto;
+    padding-top: 125px;
 }

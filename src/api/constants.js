@@ -5,5 +5,8 @@ export const pictureUrls = {
     'PAZAR_DERE': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672599096/peak-climber-pictures/PazarDere_rh0rfs.jpg',
     'FERDINANDOVO_EZERO': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1677864431/Ferdinandovo_ezero.jpg',
     'FIERY_CLOUDS': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672599535/peak-climber-pictures/weather-images/firy-dark-clouds_wcmr1u.jpg',
-    'BABREKA_LAKE': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672599122/peak-climber-pictures/Babreka_rxzixu.jpg'
+    'BABREKA_LAKE': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672599122/peak-climber-pictures/Babreka_rxzixu.jpg',
+    'MIST': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672599624/peak-climber-pictures/mist_rh7e7k.jpg',
+    'SKAKAVITSA': 'https://res.cloudinary.com/dhr071bhp/image/upload/v1672598890/peak-climber-pictures/skakavitsa-waterfall_qenjfc.jpg',
+    'PINK_CLOUDS': "https://res.cloudinary.com/dhr071bhp/image/upload/v1672599532/peak-climber-pictures/weather-images/pink-clouds_qihl0l.jpg",
 }
