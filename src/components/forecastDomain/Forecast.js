@@ -76,7 +76,7 @@ export const Forecast = (props) => {
                 <Suspense fallback={<p>Loading...</p>}>
                     {forecast.length > 0
                         ? forecast.map(day => <ForecastDayDTO numberDays={numberOfDays} key={day.date_} dayDTO={day}/>)
-                        : <p style={{fontSize: '2em'}}>Loading...</p>
+                        : <p style={{fontSize: '2em'}}>Loading forecast...</p>
                     }
                 </Suspense>
             </section>

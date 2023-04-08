@@ -13,10 +13,8 @@ export const UsersAll = (props) => {
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
-        setTimeout(() => {
             getAllUsers().then(d => d.filter(
                 u => u.username !== getUserData().username)).then(r => setAllUsers(r));
-        }, 1000)
     }, [])
 
     useBackground(pictureUrls.FERDINANDOVO_EZERO)
@@ -28,7 +26,7 @@ export const UsersAll = (props) => {
                 <div className="card-group">
                     {allUsers.length > 0 ?
                         allUsers.map(u => <UserCard key={u.id} userDTO={u}/>)
-                        : <p className="text-white">No users!</p>
+                        : <p className="text-white">Loading users...</p>
                     }
                 </div>
             </section>

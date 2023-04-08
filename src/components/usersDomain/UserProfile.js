@@ -5,6 +5,7 @@ import {PrettyFooter} from "../commonsDomain/PrettyFooter";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {useBackground} from "../../hooks/useBackground";
 import styles from "./UserProfile.module.css";
+import {pictureUrls} from "../../api/constants";
 
 export const UserProfile = (props) => {
 
@@ -17,7 +18,7 @@ export const UserProfile = (props) => {
         getParticularUser(user.username).then(r => setThoughts(r.thoughts));
     }, [])
 
-    useBackground("https://res.cloudinary.com/dhr071bhp/image/upload/v1672599535/peak-climber-pictures/weather-images/firy-dark-clouds_wcmr1u.jpg")
+    useBackground(pictureUrls.FIERY_CLOUDS)
 
     async function editThoughtsFormSubmitHandler(e) {
         e.preventDefault();
@@ -59,7 +60,7 @@ export const UserProfile = (props) => {
                         <form onSubmit={editThoughtsFormSubmitHandler} className="form-inline">
                             <label htmlFor="thoughts-input">Share something that inspires!</label>
                             <input className="form-control" onChange={inputChangeHandler} value={thoughts}
-                                   type="text" id="thoughts-input"/>
+                                   type="text" id="thoughts-input" min={10} max={100} />
                             {!!errors && errors !== '' ? <span className="text-white bg-danger">{errors}</span> : null}
                             <button className="btn btn-dark my-2 my-sm-0">Confirm Changes</button>
                         </form>

@@ -10,6 +10,14 @@ export function clearUserData() {
     sessionStorage.removeItem('userData')
 }
 
+export function updateUserData(newValue) {
+    let prevData = getUserData();
+    Object.keys(newValue).forEach(function(val, key){
+        prevData[val] = newValue[val];
+    })
+    setUserData(prevData)
+}
+
 export function isAdmin() {
     let userData = getUserData();
     if (!!userData) {

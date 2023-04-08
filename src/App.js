@@ -35,16 +35,14 @@ function App() {
                     <Route path="/users/logout">
                         <Redirect to="/"/>
                     </Route>
-                    {!!getUserData()
-                        ? <>
-                            <Route path="/users/me" component={UserProfile}/>
-                            <Route path="/users/all" component={UsersAll}/>
-                        </>
-                        : <Redirect to="/users/login"/>
-                    }
-                    <Route path="*">
-                        <Redirect to="/"/>
-                    </Route>
+                    <>
+                        <Route path="/users/me" component={UserProfile}>
+                            {!getUserData() && <Redirect to={"/users/login"}/>}
+                        </Route>
+                        <Route path="/users/all" component={UsersAll}>
+                            {!getUserData() && <Redirect to={"/users/login"}/>}
+                        </Route>
+                    </>
                 </Switch>
             </BrowserRouter>
         </div>

@@ -78,13 +78,12 @@ export const AddRoutePage = (props) => {
                                 </div>
                             </div>
 
-
                             <div className="form-group">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="routeNotes">Description</label>
                                     <textarea id="routeNotes" name="itinerary"
                                               className="form-control"
-                                              required={true}
+                                              required={true} minLength={20}
                                               defaultValue={''}/>
                                 </div>
                             </div>

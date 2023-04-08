@@ -6,17 +6,18 @@ export const PictureCard = ({pictureDTO, setPictures, pictureIndex}) => {
     async function deletePictureHandler(e) {
         e.preventDefault();
         let confirmation = window.confirm("Are you sure \nyou want to delete \nthis picture entry?");
-        if (confirmation)
+        if (confirmation) {
             await deletePicture(pictureDTO.id)
-        setPictures(oldPictures => {
-            let newArr = []
-            for (let i = 0; i < oldPictures.length; i++) {
-                if (i !== pictureIndex) {
-                    newArr.push(oldPictures[i])
+            setPictures(oldPictures => {
+                let newArr = []
+                for (let i = 0; i < oldPictures.length; i++) {
+                    if (i !== pictureIndex) {
+                        newArr.push(oldPictures[i])
+                    }
                 }
-            }
-            return newArr;
-        });
+                return newArr;
+            });
+        }
     }
 
     return (

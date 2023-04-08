@@ -1,4 +1,5 @@
 import {get, patch} from "../api/request.js";
+import {updateUserData} from "../api/util.js";
 
 const endpoints = {
     'getAllUsers': '/users/all',
@@ -26,6 +27,9 @@ export const demoteUser = async (userId) => {
 
 export const editThoughts = async (userId, editedThoughts) => {
     let r = await patch(endpoints["edit-thoughts"](userId, editedThoughts));
-    if (r.status === 400)
-    return r;
+    if (r.status === 400) {
+        return r;
+    } else {
+        updateUserData({'thoughts': editedThoughts})
+    }
 }

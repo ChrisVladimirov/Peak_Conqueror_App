@@ -24,7 +24,10 @@ export async function createPicture(pictureData) {
 }
 
 export async function editPicture(pictureId, editedPictureData) {
-    await put(endpoints.editPicture(pictureId), editedPictureData);
+    let response = await put(endpoints.editPicture(pictureId), editedPictureData);
+    if (response.status === 400) {
+        return await(await response).json();
+    }
 }
 
 export async function deletePicture(pictureId) {

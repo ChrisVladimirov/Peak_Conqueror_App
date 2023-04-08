@@ -10,7 +10,7 @@ export const EditRoutePage = (props) => {
     const routeId = props.match.params.routeId;
     const [routeDTO, setRouteDTO] = useState(null);
 
-    const pictures = usePictures();
+    const [pictures, ] = usePictures();
     const [levels, setLevels] = useState([]);
 
     useEffect(() => {
@@ -22,14 +22,15 @@ export const EditRoutePage = (props) => {
     const [pictureUrls, setPictureUrls] = useState([]);
 
     useEffect(() => {
-        if (routeDTO){
-        setPictureUrls(() => {
-            let arr = []
-            for (let pictureEntity of Object.values(routeDTO?.pictures)) {
-                arr.push(pictureEntity.url)
-            }
-            return arr;
-        })}
+        if (routeDTO) {
+            setPictureUrls(() => {
+                let arr = []
+                for (let pictureEntity of Object.values(routeDTO?.pictures)) {
+                    arr.push(pictureEntity.url)
+                }
+                return arr;
+            })
+        }
     }, [routeDTO]);
 
     async function submitEditRouteHandler(e) {
@@ -113,7 +114,8 @@ export const EditRoutePage = (props) => {
                                     <div className="form-group">
                                         <div className="col-md-6 mb-3">
                                             <label htmlFor="routeInitialImage">Pictures</label>
-                                            <select name="pictureUrls" required={true} multiple={true}
+                                            <select id="routeInitialImage" name="pictureUrls" required={true}
+                                                    multiple={true}
                                                     value={pictureUrls}
                                                     onChange={e => {
                                                         const options = [...e.target.selectedOptions];

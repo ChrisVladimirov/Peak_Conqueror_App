@@ -4,7 +4,7 @@ import {getAllPictures} from "../services/pictureService.js";
 /**
  * A custom hook to return the pictures collection
  * @param props (optional)
- * @returns pictures as an array
+ * @returns pictures as an array and a setter function
  */
 export const usePictures = (props) => {
     const [pictures, setPictures] = useState(props || []);
