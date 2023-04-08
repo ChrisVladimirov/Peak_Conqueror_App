@@ -15,6 +15,7 @@ import {EditRoutePage} from "./components/routesDomain/EditRoutePage";
 import {PicturesPage} from "./components/picturesDomain/PicturesPage";
 import {CreatePicturePage} from "./components/picturesDomain/CreatePicturePage";
 import {EditPicturePage} from "./components/picturesDomain/EditPicturePage";
+import {ErrorPage} from "./components/commonsDomain/ErrorPage";
 
 function App() {
     return (
@@ -35,14 +36,28 @@ function App() {
                     <Route path="/users/logout">
                         <Redirect to="/"/>
                     </Route>
-                    <>
-                        <Route path="/users/me" component={UserProfile}>
-                            {!getUserData() && <Redirect to={"/users/login"}/>}
-                        </Route>
-                        <Route path="/users/all" component={UsersAll}>
-                            {!getUserData() && <Redirect to={"/users/login"}/>}
-                        </Route>
-                    </>
+
+                    {!!getUserData()
+                        ? <>
+                            <Route path="/users/me" component={UserProfile}/>
+                            <Route path="/users/all" component={UsersAll}/>
+                            <Route path="*">
+                                <ErrorPage/>
+                            </Route>
+                        </>
+                        :
+                        <>
+                            <Route exact={true} path="/users/me">
+                                <Redirect to="/users/login"/>
+                            </Route>
+                            <Route exact={true} path="/users/all">
+                                <Redirect to="/users/login"/>
+                            </Route>
+                            <Route path="*">
+                                <ErrorPage/>
+                            </Route>
+                        </>
+                    }
                 </Switch>
             </BrowserRouter>
         </div>
