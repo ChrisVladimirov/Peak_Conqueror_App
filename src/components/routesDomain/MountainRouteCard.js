@@ -10,8 +10,6 @@ export const MountainRouteCard = (props) => {
     const routeDTO = props.routeDTO;
     let {likes, onLike, isLiked, onRemoveLike} = useLikesContext();
 
-    //const [isLiked, setIsLiked] = useState(isLiked);
-
     async function likeClickHandler(e) {
         let likeIcon = e.target;
         likeIcon.classList.add('fa-shake')
@@ -20,7 +18,6 @@ export const MountainRouteCard = (props) => {
         } else {
             onRemoveLike();
         }
-        //setIsLiked(!isLiked);
     }
 
     let setRoutes = props.setRoutes;

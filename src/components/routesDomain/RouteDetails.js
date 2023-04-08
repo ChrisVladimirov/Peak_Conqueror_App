@@ -4,6 +4,8 @@ import {Footer} from "../commonsDomain/Footer";
 import {NavbarTemplate} from "../commonsDomain/NavbarTemplate";
 import {RoutePhotosCarousel} from "./RoutePhotosCarousel";
 import styles from "./RouteDetails.module.css";
+import {useBackground} from "../../hooks/useBackground";
+import {pictureUrls} from "../../api/constants";
 
 export const RouteDetails = (props) => {
 
@@ -11,6 +13,8 @@ export const RouteDetails = (props) => {
 
     const [currentRoute, setCurrentRoute] = useState(null);
     const [pictures, setPictures] = useState([]);
+
+    useBackground(pictureUrls.PAZAR_DERE)
 
     useEffect(() => {
         let someFunc = async () => {
@@ -100,7 +104,7 @@ export const RouteDetails = (props) => {
                         </section>
                     </main>
                 </div>
-                : <p>'Loading...'</p>}
+                : <h5 className={styles.loadingMessage}>Loading route details...</h5>}
             <Footer/>
         </>
     );

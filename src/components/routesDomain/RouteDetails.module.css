@@ -55,3 +55,11 @@ td > i {
     background-color: darkgrey;
     padding: 0.3em;
 }
+
+.loadingMessage {
+    margin-top: 9em;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5em;
+    font-size: x-large;
+}
