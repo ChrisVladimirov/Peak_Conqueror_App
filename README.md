@@ -92,4 +92,4 @@ Brief Info about every route can be viewed by mountaineers:
 ![image](https://user-images.githubusercontent.com/84380496/227797117-c454be22-d04c-4f5d-b9fd-3af5d5a17ec1.png)
 
 Weather Forecast functionality:
-![image](https://user-images.githubusercontent.com/84380496/188314816-7f333803-175d-495f-a8b4-612272da47c8.png)
+![image](https://user-images.githubusercontent.com/84380496/230732152-00d06622-6eb8-4571-bf9e-f0e8cb13e651.png)
