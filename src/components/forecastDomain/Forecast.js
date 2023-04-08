@@ -40,8 +40,11 @@ export const Forecast = (props) => {
 
     let forecast = Array.from(weatherData)
 
-    let currentForecastLocation = allLocations
-        .find(l => l['locationName'] === mountain_location);
+    let currentForecastLocation = null
+    if (allLocations) {
+        currentForecastLocation = allLocations
+            .find(l => l['locationName'] === mountain_location);
+    }
 
     return (
         <div>
@@ -61,10 +64,13 @@ export const Forecast = (props) => {
                 </div>
             </section>
 
-            <div className={`${styles.currentForecastLocation}
+            {!!currentForecastLocation ?
+                <div className={`${styles.currentForecastLocation}
                 mx-auto d-flex flex-column align-self-center justify-content-center col-lg-4`}>
-                <h3>{currentForecastLocation['locationBeautifulName']}</h3>
-            </div>
+                    <h3>{currentForecastLocation['locationBeautifulName']}</h3>
+                </div>
+                : null
+            }
 
             <section className={`d-flex ${styles.forecastDaysContainer}`}>
                 <Suspense fallback={<p>Loading...</p>}>
