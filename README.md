@@ -93,3 +93,7 @@ Brief Info about every route can be viewed by mountaineers:
 
 Weather Forecast functionality:
 ![image](https://user-images.githubusercontent.com/84380496/230732152-00d06622-6eb8-4571-bf9e-f0e8cb13e651.png)
+
+All images used in the Web application, its source code or documentation are own imagery and subject to Copyright in accordance with EU legislature.
+<br/>
+© Christian Vladimirov, 2023.
